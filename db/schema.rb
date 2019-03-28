@@ -74,15 +74,15 @@ ActiveRecord::Schema.define(version: 2019_03_28_011701) do
 
   create_table "transactions", force: :cascade do |t|
     t.datetime "date"
-    t.integer "outreachWorker_id"
-    t.integer "reEntrant_id"
+    t.integer "outreach_worker_id"
+    t.integer "re_entrant_id"
     t.integer "resource_id"
     t.boolean "resourceAccessed"
     t.datetime "dateAccessed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["outreachWorker_id"], name: "index_transactions_on_outreachWorker_id"
-    t.index ["reEntrant_id"], name: "index_transactions_on_reEntrant_id"
+    t.index ["outreach_worker_id"], name: "index_transactions_on_outreach_worker_id"
+    t.index ["re_entrant_id"], name: "index_transactions_on_re_entrant_id"
     t.index ["resource_id"], name: "index_transactions_on_resource_id"
   end
 
