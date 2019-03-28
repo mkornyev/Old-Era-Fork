@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Resources</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Startdate</th>
+      <th>Enddate</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Address</th>
+      <th>Image</th>
+      <th>Desc</th>
+      <th>Webpage</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @resources.each do |resource| %>
+      <tr>
+        <td><%= resource.name %></td>
+        <td><%= resource.startDate %></td>
+        <td><%= resource.endDate %></td>
+        <td><%= resource.phone %></td>
+        <td><%= resource.email %></td>
+        <td><%= resource.address %></td>
+        <td><%= resource.image %></td>
+        <td><%= resource.desc %></td>
+        <td><%= resource.webpage %></td>
+        <td><%= link_to 'Show', resource %></td>
+        <td><%= link_to 'Edit', edit_resource_path(resource) %></td>
+        <td><%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Resource', new_resource_path %>
