@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Organization:</strong>
+  <%= @outreach_worker.organization %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @outreach_worker.user %>
+</p>
+
+<%= link_to 'Edit', edit_outreach_worker_path(@outreach_worker) %> |
+<%= link_to 'Back', outreach_workers_path %>

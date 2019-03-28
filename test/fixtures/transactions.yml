@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2019-03-27 21:17:01
+  outreachWorker: one
+  reEntrant: one
+  resource: one
+  resourceAccessed: false
+  dateAccessed: 2019-03-27 21:17:01
+
+two:
+  date: 2019-03-27 21:17:01
+  outreachWorker: two
+  reEntrant: two
+  resource: two
+  resourceAccessed: false
+  dateAccessed: 2019-03-27 21:17:01

@@ -1,0 +1,27 @@
+<%= form_with(model: re_entrant, local: true) do |form| %>
+  <% if re_entrant.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(re_entrant.errors.count, "error") %> prohibited this re_entrant from being saved:</h2>
+
+      <ul>
+      <% re_entrant.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :neighborhood %>
+    <%= form.text_field :neighborhood %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
