@@ -2,45 +2,22 @@
 
 <h2><%= @resource.name %></h2>>
 
-<p>
-  <strong>Startdate:</strong>
-  <%= @resource.startDate %>
-</p>
+<img src="<%= @resource.image %>">
 
-<p>
-  <strong>Enddate:</strong>
-  <%= @resource.endDate %>
-</p>
+<ul class="resource-info">
+  <li class="phone"><%= @resource.phone %></li>
+  <li class="mail"><%= @resource.email %></li>
+  <li class="website"> <a href="<%= @resource.webpage %>"><%= @resource.webpage %></a></li>
+  <li class="address"><%= @resource.address %></li>
+</ul>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @resource.phone %>
-</p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @resource.email %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @resource.address %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <%= @resource.image %>
-</p>
-
-<p>
-  <strong>Desc:</strong>
-  <%= @resource.desc %>
-</p>
-
-<p>
-  <strong>Webpage:</strong>
-  <%= @resource.webpage %>
-</p>
+<details>
+  <summary>Description</summary>
+  <p class="description longtext">
+      <%= @resource.desc %>   
+  </p>
+</details>
 
 <%= link_to 'Edit', edit_resource_path(@resource) %> |
 <%= link_to 'Back', resources_path %>
