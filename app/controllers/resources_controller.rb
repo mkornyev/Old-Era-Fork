@@ -4,12 +4,16 @@ class ResourcesController < ApplicationController
   # GET /resources
   # GET /resources.json
   def index
-    @resources = Resource.all
+    @resources = Resource.all.paginate(:page => params[:page]).per_page(12)
+    if params[:search]
+      @resources = Resource.search(params[:search]).paginate(:page => params[:page]).per_page(12)
+    end
   end
 
   # GET /resources/1
   # GET /resources/1.json
   def show
+    @resource = Resource.find(params[:id])  
   end
 
   # GET /resources/new
