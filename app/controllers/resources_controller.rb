@@ -4,9 +4,9 @@ class ResourcesController < ApplicationController
   # GET /resources
   # GET /resources.json
   def index
-    @resources = Resource.all.paginate(:page => params[:page]).per_page(12)
+    @resources = Resource.all.paginate(:page => params[:page]).per_page(10)
     if params[:search]
-      @resources = Resource.search(params[:search]).paginate(:page => params[:page]).per_page(12)
+      @resources = Resource.search(params[:search]).paginate(:page => params[:page]).per_page(10)
     end
   end
 
