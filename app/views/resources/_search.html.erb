@@ -1,6 +1,6 @@
-<%= form_with url: resources_path, method: :get, class: "form-inline", id: "resources" do %>
-  <%= text_field_tag 'search', '', placeholder: "Search ..." %>
-  <% submit_tag "Search" %>
+<%= form_tag(resources_path, method: :get) do %>
+  <%= text_field_tag(:search, params[:search]) %>
+  <%= submit_tag("Search") %>
  <% end %>
 
 

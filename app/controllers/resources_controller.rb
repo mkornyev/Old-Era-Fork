@@ -4,9 +4,10 @@ class ResourcesController < ApplicationController
   # GET /resources
   # GET /resources.json
   def index
-    @resources = Resource.all.paginate(:page => params[:page]).per_page(10)
     if params[:search]
       @resources = Resource.search(params[:search]).paginate(:page => params[:page]).per_page(10)
+    else
+      @resources = Resource.all.paginate(:page => params[:page]).per_page(10)
     end
   end
 
@@ -73,6 +74,6 @@ class ResourcesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def resource_params
-      params.require(:resource).permit(:name, :startDate, :endDate, :phone, :email, :address, :image, :desc, :webpage)
+      params.require(:resource).permit(:name, :startDate, :endDate, :phone, :email, :address, :image, :desc, :webpage, :search)
     end
 end
