@@ -6,6 +6,8 @@ class Resource < ApplicationRecord
     has_many :flags, through: :flaggings
     #
 
+    
+
     def self.search(search)
         Resource.includes(:tags).where("resources.desc LIKE :search OR tags.name LIKE :search", search: "%#{search}%" ).references(:tags)
     end
