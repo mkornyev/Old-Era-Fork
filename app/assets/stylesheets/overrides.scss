@@ -3,7 +3,7 @@
 
 html {
 	font-family: 'Source Sans Pro', sans-serif;
-	background-color: #F3F5F6;
+	/*background-color: #F3F5F6;*/
 }
 
 
@@ -17,13 +17,3 @@ h3 {
 }
 
 
-.parallax-container .parallax img {
-    
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    transform: translate3d(0, 0, 0);
-    transform: translateX(-50%);
-}
