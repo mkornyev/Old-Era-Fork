@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_secure_password
   
   # validations
-  validates :username, presence: true, uniqueness: { case_sensitive: false}
+  validates :email, presence: true, uniqueness: { case_sensitive: true}
   validates :role, inclusion: { in: %w[admin instructor parent], message: "is not a recognized role in system" }
   validates_presence_of :password, on: :create
   validates_presence_of :password_confirmation, on: :create
