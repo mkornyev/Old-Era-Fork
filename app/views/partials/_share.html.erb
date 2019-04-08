@@ -21,7 +21,7 @@
   <div id="modal1" class="modal modal-fixed-footer">
     <div class="modal-content">
       <h4>Share this resource</h4>
-        <%= form_tag(share_resource_path) do %>
+        <%= form_tag(share_resource_path_url) do %>
           <%= text_field_tag(:email, params[:email]) %>
           
 
