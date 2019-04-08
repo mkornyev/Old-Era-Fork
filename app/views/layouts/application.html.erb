@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>NewERA412</title>
+    <title>NewERA412 | <%= controller.controller_name.capitalize %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,7 +11,8 @@
 
   <body>
     <!-- Partials for the topbar and navigation -->
-    <%= render :partial => "partials/topbar" %>
+    <%= render :partial => "partials/nav" %>
+
     <% if logged_in? %>
       <%= render :partial => "partials/nav" %>
     <% end %>
