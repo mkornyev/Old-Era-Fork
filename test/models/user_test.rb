@@ -7,8 +7,8 @@ class UserTest < ActiveSupport::TestCase
   should validate_presence_of(:email)
 
   should allow_value("admin").for(:role)
-  should allow_value("instructor").for(:role)
-  should allow_value("parent").for(:role)
+  should allow_value("reentrant").for(:role)
+  should allow_value("sow").for(:role)
   should_not allow_value("bad").for(:role)
   should_not allow_value("hacker").for(:role)
   should_not allow_value(10).for(:role)
