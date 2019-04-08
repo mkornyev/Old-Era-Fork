@@ -1,0 +1,33 @@
+<!-- <div class="row valign-wrapper" id="topbar">
+  <div class="col s1">
+    LOGO
+  </div>
+  
+  </div>
+</div>
+ -->
+
+<!-- Modal Trigger -->
+    <tr>
+      <td><%=object.name%></td>
+      <td><%=object.phone%></td>
+      <td><%=object.email%></td>
+      <td><%=object.address%></td>
+      <td><%=object.name%></td>
+      <td><a class="waves-effect waves-light btn modal-trigger" href="#modal<%=object.name%>">Share</a></td>
+    </tr>
+
+  <!-- Modal Structure -->
+  <div id="modal<%=object.name%>" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>Share this resource</h4>
+        <%= form_tag(share_resource_path_url) do %>
+          <%= text_field_tag(:email, params[:email]) %>
+          
+
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat"><%= submit_tag("Share") %></a>
+      <% end %>
+    </div>
+  </div>
