@@ -12,13 +12,14 @@
 //
 //= require rails-ujs
 //= require jquery
+//= require jquery_ujs
+//= require turbolinks
 //= require activestorage
 //= require materialize-sprockets
 //= require_tree .
 
-
-  // Or with jQuery
-
   $(document).ready(function(){
     $('.sidenav').sidenav();
   });
+
+    
