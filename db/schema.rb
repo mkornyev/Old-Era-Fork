@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_08_015816) do
+ActiveRecord::Schema.define(version: 2019_04_08_023248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,6 +109,8 @@ ActiveRecord::Schema.define(version: 2019_04_08_015816) do
     t.string "state"
     t.string "zip"
     t.boolean "active"
+    t.string "first_name"
+    t.string "last_name"
   end
 
   add_foreign_key "flaggings", "flags"
