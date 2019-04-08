@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_08_011933) do
+ActiveRecord::Schema.define(version: 2019_04_08_023248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "flaggings", force: :cascade do |t|
-    t.integer "resource_id"
-    t.integer "flag_id"
+    t.bigint "resource_id"
+    t.bigint "flag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["flag_id"], name: "index_flaggings_on_flag_id"
@@ -32,24 +32,24 @@ ActiveRecord::Schema.define(version: 2019_04_08_011933) do
 
   create_table "outreach_workers", force: :cascade do |t|
     t.string "organization"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active"
     t.index ["user_id"], name: "index_outreach_workers_on_user_id"
   end
 
   create_table "re_entrants", force: :cascade do |t|
     t.string "neighborhood"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active"
     t.index ["user_id"], name: "index_re_entrants_on_user_id"
   end
 
   create_table "resources", force: :cascade do |t|
     t.string "name"
-    t.datetime "startDate"
-    t.datetime "endDate"
     t.string "phone"
     t.string "email"
     t.string "image"
@@ -62,11 +62,12 @@ ActiveRecord::Schema.define(version: 2019_04_08_011933) do
     t.string "city"
     t.string "state"
     t.string "zip"
+    t.boolean "active"
   end
 
   create_table "taggings", force: :cascade do |t|
-    t.integer "resource_id"
-    t.integer "tag_id"
+    t.bigint "resource_id"
+    t.bigint "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["resource_id"], name: "index_taggings_on_resource_id"
@@ -81,13 +82,14 @@ ActiveRecord::Schema.define(version: 2019_04_08_011933) do
 
   create_table "transactions", force: :cascade do |t|
     t.datetime "date"
-    t.integer "outreach_worker_id"
-    t.integer "re_entrant_id"
-    t.integer "resource_id"
+    t.bigint "outreach_worker_id"
+    t.bigint "re_entrant_id"
+    t.bigint "resource_id"
     t.boolean "resourceAccessed"
     t.datetime "dateAccessed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "bookmarked"
     t.index ["outreach_worker_id"], name: "index_transactions_on_outreach_worker_id"
     t.index ["re_entrant_id"], name: "index_transactions_on_re_entrant_id"
     t.index ["resource_id"], name: "index_transactions_on_resource_id"
@@ -106,6 +108,18 @@ ActiveRecord::Schema.define(version: 2019_04_08_011933) do
     t.string "city"
     t.string "state"
     t.string "zip"
+    t.boolean "active"
+    t.string "first_name"
+    t.string "last_name"
   end
 
+  add_foreign_key "flaggings", "flags"
+  add_foreign_key "flaggings", "resources"
+  add_foreign_key "outreach_workers", "users"
+  add_foreign_key "re_entrants", "users"
+  add_foreign_key "taggings", "resources"
+  add_foreign_key "taggings", "tags"
+  add_foreign_key "transactions", "outreach_workers"
+  add_foreign_key "transactions", "re_entrants"
+  add_foreign_key "transactions", "resources"
 end
