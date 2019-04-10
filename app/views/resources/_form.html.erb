@@ -17,16 +17,6 @@
   </div>
 
   <div class="field">
-    <%= form.label :startDate %>
-    <%= form.datetime_select :startDate %>
-  </div>
-
-  <div class="field">
-    <%= form.label :endDate %>
-    <%= form.datetime_select :endDate %>
-  </div>
-
-  <div class="field">
     <%= form.label :phone %>
     <%= form.text_field :phone %>
   </div>
@@ -37,8 +27,28 @@
   </div>
 
   <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
+    <%= form.label :street_1 %>
+    <%= form.text_field :street_1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :street_2 %>
+    <%= form.text_field :street_2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state %>
+    <%= form.text_field :state %>
+  </div>
+
+  <div class="field">
+    <%= form.label :zip %>
+    <%= form.text_field :zip %>
   </div>
 
   <div class="field">
