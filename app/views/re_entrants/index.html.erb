@@ -15,7 +15,7 @@
     <% @re_entrants.each do |re_entrant| %>
       <tr>
         <td><%= re_entrant.neighborhood %></td>
-        <td><%= re_entrant.user %></td>
+        <td><%= re_entrant.user.name %></td>
         <td><%= link_to 'Show', re_entrant %></td>
         <td><%= link_to 'Edit', edit_re_entrant_path(re_entrant) %></td>
         <td><%= link_to 'Destroy', re_entrant, method: :delete, data: { confirm: 'Are you sure?' } %></td>

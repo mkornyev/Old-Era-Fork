@@ -14,8 +14,8 @@
   <tbody>
     <% @outreach_workers.each do |outreach_worker| %>
       <tr>
+        <td><%= outreach_worker.user.name %></td>
         <td><%= outreach_worker.organization %></td>
-        <td><%= outreach_worker.user %></td>
         <td><%= link_to 'Show', outreach_worker %></td>
         <td><%= link_to 'Edit', edit_outreach_worker_path(outreach_worker) %></td>
         <td><%= link_to 'Destroy', outreach_worker, method: :delete, data: { confirm: 'Are you sure?' } %></td>

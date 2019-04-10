@@ -16,6 +16,10 @@ class User < ApplicationRecord
   before_save :reformat_phone
 
 
+  def name
+    first_name + " " + last_name
+  end
+
   def reentrant
     ReEntrant.find_by_user_id(self.id)
   end
@@ -30,8 +34,8 @@ class User < ApplicationRecord
   end
 
   # login by username
-  def self.authenticate(username, password)
-    find_by_username(username).try(:authenticate, password)
+  def self.authenticate(email, password)
+    find_by_email(email).try(:authenticate, password)
   end
 
   private
