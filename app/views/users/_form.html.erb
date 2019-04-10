@@ -1,0 +1,30 @@
+<%= simple_form_for(@user) do |f| %>
+  <%= f.error_notification %>
+  <div class="row">
+    <div class="form-inputs">
+        
+      <%= f.input :email, label_html: { class: 'active' }%> 
+      <%= f.input :password, label_html: { class: 'active' } %>
+      <%= f.input :password_confirmation, label_html: { class: 'active' } %>
+      <%= f.input :first_name, label_html: { class: 'active' } %>
+      <%= f.input :last_name, label_html: { class: 'active' } %>
+
+
+      <% if !logged_in? %>
+      
+        <%= f.input :role, collection: User::ROLES, include_blank: true %>
+
+      <% end %>
+      <% if logged_in? and current_user.role?(:admin) %>
+        <%= f.input :role, collection: User::ROLES, include_blank: true %>
+      <% end %>
+      <%= f.input :phone, label_html: { class: 'active' }%> 
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-actions col s8">
+      <%= f.button :submit %>
+    </div>
+  </div>
+<% end %>
