@@ -12,7 +12,7 @@
   <body>
     <!-- Partials for the topbar and navigation -->
 
-    <% if logged_in? && ( current_user.role?(:outreach_worker)) %>
+    <% if logged_in? && current_user.role?(:outreach_worker) %>
       <%= render :partial => "partials/nav_sow" %>
     <% elsif logged_in? && current_user.role?(:re_entrant) %>
       <%= render :partial => "partials/nav_reentrant" %>
