@@ -4,4 +4,11 @@ class OutreachWorker < ApplicationRecord
   has_many :re_entrants, through: :transactions
 
 
+  # delegates
+  delegate :email, to: :user, allow_nil: true
+  delegate :phone, to: :user, allow_nil: true
+  delegate :first_name, to: :user, allow_nil: true
+  delegate :last_name, to: :user, allow_nil: true
+
+
 end

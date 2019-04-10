@@ -24,7 +24,6 @@ class ReEntrantsController < ApplicationController
   # POST /re_entrants
   # POST /re_entrants.json
   def create
-    logger.info("Attempting to save")
     @user = User.new(user_params)
     @user.role = "reentrant"
     @re_entrant = ReEntrant.new
@@ -39,11 +38,11 @@ class ReEntrantsController < ApplicationController
           format.html { redirect_to @re_entrant, notice: 'Re entrant was successfully created.' }
           format.json { render :show, status: :created, location: @re_entrant }
         else
-          format.html { render :new }
+          format.html { render :show, notice: 'Unable to save Re entrant' }
           format.json { render json: @re_entrant.errors, status: :unprocessable_entity }
         end
       else
-        format.html { render :new }
+        format.html { render :index, notice: 'Unable to save user' }
         format.json { render json: @re_entrant.errors, status: :unprocessable_entity }
       end
     end

@@ -24,15 +24,26 @@ class OutreachWorkersController < ApplicationController
   # POST /outreach_workers
   # POST /outreach_workers.json
   def create
-    @outreach_worker = OutreachWorker.new(outreach_worker_params)
+    @user = User.new(user_params)
+    @user.role = "sow"
+    @outreach_worker = OutreachWorker.new
+    @outreach_worker.organization = params[:organization]
+    
 
     respond_to do |format|
-      if @outreach_worker.save
-        format.html { redirect_to @outreach_worker, notice: 'Outreach worker was successfully created.' }
-        format.json { render :show, status: :created, location: @outreach_worker }
+      if @user.save
+        @outreach_worker.user_id = @user.id
+        if @outreach_worker.save
+          logger.info("Saving is good!")
+          format.html { redirect_to @outreach_worker, notice: 'Outreach Worker was successfully created.' }
+          format.json { render :show, status: :created, location: @outreach_worker }
+        else
+          format.html { render :index }
+          format.json { render json: @outreach_worker.errors, status: :unprocessable_entity }
+        end
       else
-        format.html { render :new }
-        format.json { render json: @outreach_worker.errors, status: :unprocessable_entity }
+        format.html { render :show }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -69,6 +80,10 @@ class OutreachWorkersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def outreach_worker_params
-      params.require(:outreach_worker).permit(:organization, :user_id)
+      params.require(:outreach_worker).permit(:first_name, :last_name, :active, :email, :phone, :username, :password, :password_confirmation, :organization, :user_id)
+    end
+
+    def user_params
+      params.require(:outreach_worker).permit(:first_name, :last_name, :active, :email, :phone, :username, :password, :password_confirmation)
     end
 end
