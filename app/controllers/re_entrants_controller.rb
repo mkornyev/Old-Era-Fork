@@ -24,12 +24,24 @@ class ReEntrantsController < ApplicationController
   # POST /re_entrants
   # POST /re_entrants.json
   def create
-    @re_entrant = ReEntrant.new(re_entrant_params)
+    logger.info("Attempting to save")
+    @user = User.new(user_params)
+    @user.role = "reentrant"
+    @re_entrant = ReEntrant.new
+    @re_entrant.neighborhood = params[:neighborhood]
+    
 
     respond_to do |format|
-      if @re_entrant.save
-        format.html { redirect_to @re_entrant, notice: 'Re entrant was successfully created.' }
-        format.json { render :show, status: :created, location: @re_entrant }
+      if @user.save
+        @re_entrant.user_id = @user.id
+        if @re_entrant.save
+          logger.info("Saving is good!")
+          format.html { redirect_to @re_entrant, notice: 'Re entrant was successfully created.' }
+          format.json { render :show, status: :created, location: @re_entrant }
+        else
+          format.html { render :new }
+          format.json { render json: @re_entrant.errors, status: :unprocessable_entity }
+        end
       else
         format.html { render :new }
         format.json { render json: @re_entrant.errors, status: :unprocessable_entity }
@@ -69,6 +81,10 @@ class ReEntrantsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def re_entrant_params
-      params.require(:re_entrant).permit(:neighborhood, :user_id)
+      params.require(:re_entrant).permit(:first_name, :last_name, :active, :email, :phone, :username, :password, :password_confirmation, :neighborhood, :user_id)
+    end
+
+    def user_params
+      params.require(:re_entrant).permit(:first_name, :last_name, :active, :email, :phone, :username, :password, :password_confirmation)
     end
 end
