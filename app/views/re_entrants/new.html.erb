@@ -1,11 +1,8 @@
 <div class="container">
 
-<%= render partial: "partials/form2_structure", locals: {object: @re_entrant, 
-                                                        type_of_form: "New Reentrant",
-                                                        fields1: "reentrant_fields",
-                                                        section_2: "User Account",
-                                                        fields2: "user_fields"} %>
 
+
+<%= render 'form', re_entrant: @re_entrant %>
 
 </div>
 
