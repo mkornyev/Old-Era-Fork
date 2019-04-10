@@ -6,7 +6,6 @@ class ResourceTest < ActiveSupport::TestCase
   should have_many(:flaggings)
   should have_many(:flags).through(:flaggings)
 
-  should validate_presence_of(:email)
 
   should allow_value("fred@fred.com").for(:email)
   should allow_value("fred@andrew.cmu.edu").for(:email)
@@ -36,9 +35,6 @@ class ResourceTest < ActiveSupport::TestCase
   should validate_presence_of(:name)
   should validate_uniqueness_of(:name).case_insensitive
   
-  should validate_presence_of(:street_1)
-  should validate_presence_of(:zip)
-  should validate_presence_of(:max_capacity)
 
   should allow_value("03431").for(:zip)
   should allow_value("15217").for(:zip)
