@@ -25,7 +25,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt'
 
 #authorization
 gem 'cancancan'
@@ -61,6 +61,19 @@ group :test do
   gem 'factory_bot_rails'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+end
+
+group :test do
+  gem 'simplecov', '0.15.1'
+  gem 'shoulda', '3.5.0'
+  gem 'shoulda-matchers', '2.8.0'
+  gem 'minitest-rails', '3.0.0'
+  gem 'minitest-reporters', '1.1.19'
+  gem 'rails-controller-testing', '1.0.2'
+  gem 'mocha', require: false
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner', '1.6.2'
+  gem 'launchy', '2.4.3'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
