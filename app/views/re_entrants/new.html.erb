@@ -1,5 +1,13 @@
-<h1>New Re Entrant</h1>
+<div class="container">
 
-<%= render 'form', re_entrant: @re_entrant %>
+<%= render partial: "partials/form2_structure", locals: {object: @re_entrant, 
+                                                        type_of_form: "New Reentrant",
+                                                        fields1: "reentrant_fields",
+                                                        section_2: "User Account",
+                                                        fields2: "user_fields"} %>
 
-<%= link_to 'Back', re_entrants_path %>
+
+</div>
+
+
+
