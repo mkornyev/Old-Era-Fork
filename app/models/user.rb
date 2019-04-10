@@ -30,8 +30,8 @@ class User < ApplicationRecord
   end
 
   # login by username
-  def self.authenticate(username, password)
-    find_by_username(username).try(:authenticate, password)
+  def self.authenticate(email, password)
+    find_by_email(email).try(:authenticate, password)
   end
 
   private
