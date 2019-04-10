@@ -18,7 +18,8 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: :logout
 
  # Special routes
-  get 'resources/share/:id', to: 'transactions#new', as: :share_resource_path
+  get 'resources/:id/share/', to: 'transactions#new', as: :share_resource_path
+  get 'resources/:id/confirm', to: 'transactions#confirm', as: :confirm_resource_path
 
   # Default routes
   resources :outreach_workers
