@@ -16,6 +16,10 @@ class User < ApplicationRecord
   before_save :reformat_phone
 
 
+  def name
+    first_name + " " + last_name
+  end
+
   def reentrant
     ReEntrant.find_by_user_id(self.id)
   end

@@ -10,6 +10,7 @@ class ReEntrantsController < ApplicationController
   # GET /re_entrants/1
   # GET /re_entrants/1.json
   def show
+    @transactions = @re_entrant.transactions
   end
 
   # GET /re_entrants/new
