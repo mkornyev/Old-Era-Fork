@@ -81,4 +81,5 @@ gem 'jquery-rails'
 gem 'materialize-sass'
 gem 'simple_form'
 # gem 'bcrypt', '~> 3.1.7'
+gem 'bootstrap'
 

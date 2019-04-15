@@ -12,14 +12,18 @@
 //
 //= require rails-ujs
 //= require jquery
+//= require popper
+//= require bootstrap
 //= require jquery_ujs
 //= require turbolinks
 //= require activestorage
 //= require materialize-sprockets
 //= require_tree .
 
-  $(document).ready(function(){
-    $('.sidenav').sidenav();
-  });
+  // $(document).ready(function(){
+  //   $('.sidenav').sidenav();
+  // });
+
+
 
     
