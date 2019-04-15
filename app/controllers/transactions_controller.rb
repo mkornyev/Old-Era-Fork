@@ -13,7 +13,11 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    @transaction = Transaction.new(transaction_params)
+    @transaction = Transaction.new
+    @transaction.outreach_worker_id = current_user.outreachWorker.id
+    @transaction.re_entrant_id = User.find_by_email(params[:transaction[:email]]).reentrant.id
+    @transaction.resource_id = params[:transaction[:resource_id]]
+    @transaction.resourceAccessed = false
     if @transaction.save
       redirect_to resources_url
     else
@@ -35,4 +39,10 @@ class TransactionsController < ApplicationController
       render action: 'show'
     end
   end
+
+  private
+
+  def transaction_params
+      params.require(:transaction).permit(:email, :id, :ResourceID, :SOWID)
+    end
 end

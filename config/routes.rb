@@ -17,15 +17,19 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: :login
   get 'logout', to: 'sessions#destroy', as: :logout
 
+ # Special routes
+  get 'resources/:id/share/', to: 'transactions#new', as: :share_resource_path
+  get 'resources/:id/confirm', to: 'transactions#confirm', as: :confirm_resource_path
+
   # Default routes
   resources :outreach_workers
   resources :re_entrants
   resources :flags
   resources :resources
   resources :tags
+  resources :transactions
 
-  # Special routes
-  get 'resources/share', to: 'transaction#new', as: :share_resource_path
+  
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

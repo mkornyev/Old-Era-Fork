@@ -61,9 +61,7 @@ group :test do
   gem 'factory_bot_rails'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
-end
 
-group :test do
   gem 'simplecov', '0.15.1'
   gem 'shoulda', '3.5.0'
   gem 'shoulda-matchers', '2.8.0'
