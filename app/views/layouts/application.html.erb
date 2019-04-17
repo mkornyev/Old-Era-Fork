@@ -18,9 +18,9 @@
 
     <!-- Partials for the topbar and navigation -->
 
-    <% if logged_in? && ( current_user.role?(:outreach_worker)) %>
+    <% if logged_in? && current_user.role?(:sow) %>
       <%= render :partial => "partials/nav_sow" %>
-    <% elsif logged_in? && current_user.role?(:re_entrant) %>
+    <% elsif logged_in? && current_user.role?(:reentrant) %>
       <%= render :partial => "partials/nav_reentrant" %>
     <% elsif logged_in? && current_user.role?(:admin) %>
       <%= render :partial => "partials/nav_admin" %>
@@ -33,7 +33,7 @@
         <div class="col s12"> -->
 
           <main>
-         
+          <h3><%# current_user.last_name %> <%# current_user.role %></h3>
 
           <!-- MAIN CONTENT OF TEMPLATE GOES HERE -->
           <%= yield %>
