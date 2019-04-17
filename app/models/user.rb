@@ -30,6 +30,8 @@ class User < ApplicationRecord
 
   def role?(authorized_role)
     return false if role.nil?
+    puts "not false"
+    puts role
     role.downcase.to_sym == authorized_role
   end
 
