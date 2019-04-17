@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   # Handling authentication
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
-    puts "We have liftoff with #{@current_user.last_name} as an #{@current_user.role}" if session[:user_id]
+    return @current_user
   end
   helper_method :current_user
   
