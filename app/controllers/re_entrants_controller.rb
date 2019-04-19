@@ -36,13 +36,16 @@ class ReEntrantsController < ApplicationController
         @re_entrant.user_id = @user.id
         if @re_entrant.save
           logger.info("Saving is good!")
-          flash[:notice] = "Successfully created #{@re_entrant.name}."
-        redirect_to re_entrant_path(@re_entrant) 
+          format.html { redirect_to @re_entrant, notice: 'Your account was successfully created!' }
+          format.json { render :show, status: :created, location: @re_entrant }
         else
           render action: 'new'
         end
       else
-        render action: 'new'
+        # @user.valid?
+        format.html { render :new, notice: 'Unable to save user' }
+        format.json { render json: @re_entrant.errors, status: :unprocessable_entity }
+        # render action: 'new'
       end
     end
   end

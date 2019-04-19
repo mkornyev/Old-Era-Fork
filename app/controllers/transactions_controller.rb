@@ -13,7 +13,10 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    @transaction = Transaction.new(transaction_params)
+    @transaction = Transaction.new
+    @transaction.outreach_worker_id = params[:transaction[:SOWID]]
+    @transaction.re_entrant_id = User.find_by_email(params[:transaction[:email]]).reentrant.id
+    @transaction.resource_id = params[:transaction[:ResourceID]]
     @transaction.resourceAccessed = false
     if @transaction.save
       redirect_to resources_url
