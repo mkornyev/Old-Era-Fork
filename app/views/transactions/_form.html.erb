@@ -13,12 +13,12 @@
 
   <div class="field">
     <%= form.label :ResourceID %>
-    <%= form.text_field :ResourceID %>
+    <%= form.text_field :ResourceID, :value => params[:id] %>
   </div>
 
   <div class="field">
     <%= form.label :SOWID %>
-    <%= form.text_field :SOWID %>
+    <%= form.text_field :SOWID, :value => current_user.outreachWorker.id %>
   </div>
 
 
