@@ -8,11 +8,17 @@ class Resource < ApplicationRecord
 
 
     validates :name, presence: true, uniqueness: { case_sensitive: false }
-    # validates :street_1, presence: true
+    validates :street_1, presence: true
+    validates :city, presence: true
+    validates :state, presence: true
+    validates :zip, presence: true
     validates :state, inclusion: { in: STATES_LIST.map{|a,b| b}, message: "is not valid state", allow_blank: true }
     validates :zip, format: { with: /\A\d{5}\z/, message: "should be five digits long", allow_blank: true }
-    validates_format_of :email, with: /\A[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil))\z/i, message: "is not a valid format"
+    validates_format_of :email, with: /\A[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil))\z/i, message: "is not a valid format", allow_blank: true
     validates_format_of :phone, with: /\A\(?\d{3}\)?[-. ]?\d{3}[-.]?\d{4}\z/, message: "should be 10 digits (area code needed) and delimited with dashes or dots"
+
+    scope :alphabetical, -> { order('name') }
+
 
 
     def self.search(search)
