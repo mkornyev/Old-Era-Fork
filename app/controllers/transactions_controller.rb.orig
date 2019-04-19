@@ -13,10 +13,14 @@ class TransactionsController < ApplicationController
   end
 
   def create
+<<<<<<< HEAD
+    @transaction = Transaction.new(transaction_params)
+=======
     @transaction = Transaction.new
-    @transaction.outreach_worker_id = params[:transaction][:outreach_worker_id]
-    @transaction.re_entrant_id = User.find_by_email(params[:transaction][:email]).reentrant.id
-    @transaction.resource_id = params[:transaction][:resource_id]
+    @transaction.outreach_worker_id = params[:transaction[:SOWID]]
+    @transaction.re_entrant_id = User.find_by_email(params[:transaction[:email]]).reentrant.id
+    @transaction.resource_id = params[:transaction[:ResourceID]]
+>>>>>>> c7a3f8482b1bd7efe53427a0afd965cc249fbdae
     @transaction.resourceAccessed = false
     if @transaction.save
       redirect_to resources_url
@@ -43,6 +47,6 @@ class TransactionsController < ApplicationController
   private
 
   def transaction_params
-      params.require(:transaction).permit(:resource_id, :outreach_worker_id, :email)
+      params.require(:transaction).permit(:resource_id, :outreach_worker_id, :re_entrant_id)
     end
 end
