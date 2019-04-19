@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       puts "Logged in"
-      redirect_to index_path, notice: "Logged in!"
+      redirect_to resources_path, notice: "Logged in!"
     else
       puts "Cant log in"
       flash.now.alert = "Username and/or password is invalid"
