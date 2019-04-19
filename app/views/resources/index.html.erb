@@ -1,45 +1,32 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
-<%= render 'search' %>
+<!-- <p id="notice"><%= notice %></p> -->
 
-<h1>Resources</h1>
+  <%= render 'search' %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Startdate</th>
-      <th>Enddate</th>
-      <th>Phone</th>
-      <th>Email</th>
-      <th>Address</th>
-      <th>Image</th>
-      <th>Desc</th>
-      <th>Webpage</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <h4>Resources</h4>
+  <p>We provide a variety of employment and educational resources. Filter through our categories to secure the right resource for you.</p>
 
-  <tbody>
-    <% @resources.each do |resource| %>
-      <tr>
-        <td><%= resource.name %></td>
-        <td><%= resource.startDate %></td>
-        <td><%= resource.endDate %></td>
-        <td><%= resource.phone %></td>
-        <td><%= resource.email %></td>
-        <td><%= resource.address %></td>
-        <td><%= resource.image %></td>
-        <td><%= resource.desc %></td>
-        <td><%= resource.webpage %></td>
-        <td><%= link_to 'Show', resource %></td>
-        <td><%= link_to 'Edit', edit_resource_path(resource) %></td>
-        <td><%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <% @resources.alphabetical.each do |resource| %>
+    <div class="card" style="width: 20rem;">
+      <div class="card-body">
+        <h4 class="card-title"><%=link_to resource.name, resource_path(resource)%></h4>
+        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+        <p class="card-text"><%=resource.desc %> </p>
+        <% if current_user.role?(:reentrant) %>
+          <a href="<%= resource.webpage %>" class="card-link">Visit Website</a>
+          <a href="<%=resource_path(resource)%>" class="card-link">View Resource</a>
+        <% else %>
+          <a href="<%=resource_path(resource)%>" class="card-link">View Resource</a>
+          <a href="<%=share_resource_path_url(resource)%>" class="card-link">Share</a>
 
-<br>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 
-<%= link_to 'New Resource', new_resource_path %>
+  <br>
+
+  <%= link_to 'New Resource', new_resource_path %>
+
+</div>

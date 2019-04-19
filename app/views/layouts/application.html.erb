@@ -1,34 +1,47 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>NewERA412</title>
+    <title>NewERA412 | <%= controller.controller_name.capitalize %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+
   </head>
 
-  <body>
+
+
+<body class="landing-page sidebar-collapse">
+
     <!-- Partials for the topbar and navigation -->
-    <%= render :partial => "partials/topbar" %>
-    <% if logged_in? %>
-      <%= render :partial => "partials/nav" %>
+
+    <% if logged_in? && current_user.role?(:sow) %>
+      <%= render :partial => "partials/nav_sow" %>
+    <% elsif logged_in? && current_user.role?(:reentrant) %>
+      <%= render :partial => "partials/nav_reentrant" %>
+    <% elsif logged_in? && current_user.role?(:admin) %>
+      <%= render :partial => "partials/nav_admin" %>
     <% else %>
       <%= render :partial => "partials/nav_guest" %>
     <% end %>
 
-    <div class="container">
+    <!-- <div class="container">
       <div class="row">
-        <div class="col s12">
-         
+        <div class="col s12"> -->
+
+          <main>
+          <h3><%# current_user.last_name %> <%# current_user.role %></h3>
 
           <!-- MAIN CONTENT OF TEMPLATE GOES HERE -->
           <%= yield %>
+        </main>
 
-        </div>
+       <!--  </div>
       </div>
-    </div>
+    </div> -->
     
     <%= render :partial => "partials/footer" %>  
   </body>

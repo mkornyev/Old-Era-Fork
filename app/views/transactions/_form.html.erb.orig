@@ -1,0 +1,44 @@
+<%= form_with(model: transaction, local: true) do |form| %>
+  <% if transaction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(transaction.errors.count, "error") %> prohibited this resource from being saved:</h2>
+
+      <ul>
+      <% transaction.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+<<<<<<< HEAD
+    <%= form.label :resource_id %>
+    <%= form.text_field :resource_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :outreach_worker_id %>
+    <%= form.text_field :outreach_worker_id %>
+=======
+    <%= form.label :ResourceID %>
+    <%= form.text_field :ResourceID, :value => params[:id] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :SOWID %>
+    <%= form.text_field :SOWID, :value => current_user.outreachWorker.id %>
+>>>>>>> c7a3f8482b1bd7efe53427a0afd965cc249fbdae
+  </div>
+
+
+  <div class="field">
+    <%= form.label :re_entrant_id %>
+    <%= form.text_field :re_entrant_id %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,23 +1,33 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
-<h2><%= @resource.name %></h2>>
+	<p id="notice"><%= notice %></p>
 
-<img src="<%= @resource.image %>">
+	<h2><%= @resource.name %></h2>
+	<hr>
 
-<ul class="resource-info">
-  <li class="phone"><%= @resource.phone %></li>
-  <li class="mail"><%= @resource.email %></li>
-  <li class="website"> <a href="<%= @resource.webpage %>"><%= @resource.webpage %></a></li>
-  <li class="address"><%= @resource.address %></li>
-</ul>
+	<!-- <img src="<%= @resource.image %>"> -->
+
+	<ul class="resource-info">
+	  <li class="phone"><%= @resource.phone %></li>
+	  <li class="mail"><%= @resource.email %></li>
+	  <li class="website"> <a href="<%= @resource.webpage %>"><%= @resource.webpage %></a></li>
+	  <li class="address"><%= @resource.address %></li>
+
+	</ul>
+
+	<p><%= @resource.desc %></p>
+
+	<p><a href="<%= @resource.webpage %>" class="btn btn-primary btn-raised btn-lg">Visit Website</a></p>
 
 
-<details>
-  <summary>Description</summary>
-  <p class="description longtext">
-      <%= @resource.desc %>   
-  </p>
-</details>
+	<!-- <details>
+	  <summary>Description</summary>
+	  <p class="description longtext">
+	      <%= @resource.desc %>   
+	  </p>
+	</details> -->
 
-<%= link_to 'Edit', edit_resource_path(@resource) %> |
-<%= link_to 'Back', resources_path %>
+	<%= link_to 'Edit', edit_resource_path(@resource) %> |
+	<%= link_to 'Back', resources_path %>
+
+</div>

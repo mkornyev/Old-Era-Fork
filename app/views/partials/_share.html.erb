@@ -1,0 +1,22 @@
+<!-- <div class="row valign-wrapper" id="topbar">
+  <div class="col s1">
+    LOGO
+  </div>
+  
+  </div>
+</div>
+ -->
+
+<!-- Modal Trigger -->
+    <tr>
+      <td><%=link_to resource.name, resource_path(resource)%></td>
+      <td><%=resource.phone%></td>
+      <td><%=resource.email%></td>
+      <td><%=resource.address%></td>
+      <td><%=resource.name%></td>
+      <td class="waves-effect waves-light btn modal-trigger" href="#modal<%=resource.name%>"><%=link_to "Share", share_resource_path_url(resource)%> 
+      </td>
+    </tr>
+
+  <!-- Modal Structure -->
+ 
