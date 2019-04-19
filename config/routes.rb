@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   # Authentication and users
   resources :sessions
   resources :users
-  get 'users/new', to: 'users#new', as: :signup
+  get 're_entrants/new', to: 'users#new', as: :signup
   get 'user/edit', to: 'users#edit', as: :edit_current_user
   get 'login', to: 'sessions#new', as: :login
   get 'logout', to: 'sessions#destroy', as: :logout

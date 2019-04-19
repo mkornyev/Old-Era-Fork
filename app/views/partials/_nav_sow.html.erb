@@ -13,17 +13,20 @@
           <a class="nav-link" href="#">Resources <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="<%=outreach_worker_path(OutreachWorker.find_by_user_id(current_user.id))%>">My Account</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="#">My Referals</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Create an Account</a>
+          <a class="nav-link" href="<%=signup_path%>">Create an Account</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">About</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#">Logout</a>
+          <a class="nav-link" href="<%=logout_path%>">Logout</a>
         </li>
        
       </ul>
