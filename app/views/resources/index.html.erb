@@ -1,28 +1,49 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
-<%= render 'search' %>
+<!-- <p id="notice"><%= notice %></p> -->
 
-<h1>Resources</h1>
+  <%= render 'search' %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Phone</th>
-      <th>Email</th>
-      <th>Address</th>
-      <th>Webpage</th>
-      <th colspan="1"></th>
-    </tr>
-  </thead>
+  <h4>Resources</h4>
+  <p>We provide a variety of employment and educational resources. Filter through our categories to secure the right resource for you.</p>
 
-  <tbody>
-    <% @resources.each do |resource| %>
-      <%= render partial: "partials/share", locals: {resource: resource} %>
-    <% end %>
-  </tbody>
-</table>
+  <% @resources.alphabetical.each do |resource| %>
+    <div class="card" style="width: 20rem;">
+      <div class="card-body">
+        <h4 class="card-title"><%=link_to resource.name, resource_path(resource)%></h4>
+        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+        <p class="card-text"><%=resource.desc %> </p>
+        <a href="<%= resource.webpage %>" class="card-link">Visit Website</a>
+        <a href="<%=resource_path(resource)%>" class="card-link">View Resource</a>
+      </div>
+    </div>
+  <% end %>
 
-<br>
 
-<%= link_to 'New Resource', new_resource_path %>
+
+  
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name </th>
+        <th>Phone </th>
+        <th>Email </th>
+        <th>Address </th>
+        <th>Webpage </th>
+        <th colspan="1"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @resources.each do |resource| %>
+        <%= render partial: "partials/share", locals: {resource: resource} %>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'New Resource', new_resource_path %>
+
+</div>
