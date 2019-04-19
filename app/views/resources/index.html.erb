@@ -13,34 +13,17 @@
         <h4 class="card-title"><%=link_to resource.name, resource_path(resource)%></h4>
         <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
         <p class="card-text"><%=resource.desc %> </p>
-        <a href="<%= resource.webpage %>" class="card-link">Visit Website</a>
-        <a href="<%=resource_path(resource)%>" class="card-link">View Resource</a>
+        <% if current_user.role?(:reentrant) %>
+          <a href="<%= resource.webpage %>" class="card-link">Visit Website</a>
+          <a href="<%=resource_path(resource)%>" class="card-link">View Resource</a>
+        <% else %>
+          <a href="<%=resource_path(resource)%>" class="card-link">View Resource</a>
+          <a href="<%=share_resource_path_url(resource)%>" class="card-link">Share</a>
+
+        <% end %>
       </div>
     </div>
   <% end %>
-
-
-
-  
-
-  <table>
-    <thead>
-      <tr>
-        <th>Name </th>
-        <th>Phone </th>
-        <th>Email </th>
-        <th>Address </th>
-        <th>Webpage </th>
-        <th colspan="1"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @resources.each do |resource| %>
-        <%= render partial: "partials/share", locals: {resource: resource} %>
-      <% end %>
-    </tbody>
-  </table>
 
   <br>
 

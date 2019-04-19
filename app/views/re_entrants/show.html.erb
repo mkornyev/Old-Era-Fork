@@ -17,8 +17,8 @@
   <tbody>
     <% @transactions.each do |referral| %>
       <tr>
-        <td><%= referral.resource.name %></td>
-        <td><%= referral.outreach_worker.user.name %></td>
+        <td><%= link_to referral.resource.name, resource_path(referral.resource) %></td>
+        <td><%= link_to referral.outreach_worker.user.name, outreach_worker_path(referral.outreach_worker) %></td>
       </tr>
     <% end %>
   </tbody>
