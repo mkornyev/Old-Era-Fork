@@ -17,6 +17,10 @@ class Ability
         can :read, Flag
         can :read, Transaction
         can :read, Tag
+
+          
+        can :create, ReEntrant
+        can :create, User
   
         # they can read their own profile
         can :update, User do |u|

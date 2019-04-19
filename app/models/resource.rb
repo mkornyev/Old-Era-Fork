@@ -25,6 +25,8 @@ class Resource < ApplicationRecord
         Resource.includes(:tags).where("lower(resources.desc) LIKE :search OR lower(tags.name) LIKE :search", search: "%#{search.downcase}%" ).references(:tags)
     end
 
+    #implement realistic reentry caterogies from website, let admin add new categories
+
     def address
         street_1 + "\n" + city + ", " + state + ", " + zip
     end
