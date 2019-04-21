@@ -11,15 +11,9 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :resource_id %>
-    <%= form.text_field :resource_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :outreach_worker_id %>
-    <%= form.text_field :outreach_worker_id %>
-  </div>
+  <%= form.hidden_field :resource_id, :value => params[:id] %>
+  <%= form.hidden_field :outreach_worker_id, :value => @sharer.id %>
+  
 
 
   <div class="field">

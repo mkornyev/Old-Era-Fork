@@ -9,6 +9,23 @@
   <%= @outreach_worker.organization %>
 </p>
 
+<table>
+  <thead>
+    <tr>
+      <th>Resource</th>
+      <th>Referred To</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <% @transactions.each do |referral| %>
+      <tr>
+        <td><%= link_to referral.resource.name, resource_path(referral.resource) %></td>
+        <td><%= link_to referral.re_entrant.user.name, re_entrant_path(referral.re_entrant) %></td>
+      </tr>
+    <% end %>
+  </tbody>
 
 <%= link_to 'Edit', edit_outreach_worker_path(@outreach_worker) %> |
 <%= link_to 'Back', outreach_workers_path %>
