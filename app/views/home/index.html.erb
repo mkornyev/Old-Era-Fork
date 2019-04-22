@@ -32,5 +32,7 @@
   </div>
   <% elsif current_user.role?(:reentrant) %>
     <%= render partial: 'reentrant_home' %>
+  <% elsif current_user.role?(:sow) %>
+    <%= render partial: 'sow_home' %>
   
 <% end %>

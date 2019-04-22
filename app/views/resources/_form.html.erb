@@ -68,6 +68,16 @@
     <%= form.text_field :webpage, class: "form-control"  %>
   </div>
 
+  <div class="field">
+    <%= form.label :tag_ids %>
+    <br/>
+    <% for tag in Tag.all %>
+      <%= check_box_tag "resource[tag_ids][]", tag.id%>
+      <%= tag.name %>
+    <br/>
+    <% end %>
+  </div>
+
   <div class="actions">
     <%= form.submit "Create Resource", class: "btn btn-primary btn-raised btn-lg" %>
   </div>

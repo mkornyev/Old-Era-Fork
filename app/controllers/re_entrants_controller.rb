@@ -28,7 +28,7 @@ class ReEntrantsController < ApplicationController
     @user = User.new(user_params)
     @user.role = "reentrant"
     @re_entrant = ReEntrant.new
-    @re_entrant.neighborhood = params[:neighborhood]
+    @re_entrant.neighborhood = params[:re_entrant][:neighborhood]
     
 
     respond_to do |format|
