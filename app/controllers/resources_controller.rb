@@ -36,12 +36,6 @@ class ResourcesController < ApplicationController
 
     respond_to do |format|
       if @resource.save
-        # for tag_id in params[:resource][:tag_ids]
-        #   @tag_obj = Tagging.new
-        #   @tag_obj.resource = @resource
-        #   @tag_obj.tag = Tag.find(tag_id) 
-        #   @tag_obj.save
-        # end
         format.html { redirect_to @resource, notice: 'Resource was successfully created.' }
         format.json { render :show, status: :created, location: @resource }
       else
