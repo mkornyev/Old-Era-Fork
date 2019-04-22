@@ -10,22 +10,16 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
 //= require jquery
 //= require popper
 //= require bootstrap
+//= require jquery_ujs
 //= require turbolinks
 //= require activestorage
 //= require_tree .
-
-  // $(document).ready(function(){
-  //   $('.sidenav').sidenav();
-
-  // });
-
-  // require jquery_ujs
 
 
 
 
     
+// $(document).ready(function() { $('body').bootstrapMaterialDesign(); });
