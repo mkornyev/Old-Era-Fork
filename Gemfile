@@ -85,3 +85,4 @@ gem 'simple_form'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap'
 
+gem 'pg_search'
