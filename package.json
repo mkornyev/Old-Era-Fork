@@ -1,5 +1,7 @@
 {
   "name": "newera412",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "material-design-icons": "^3.0.1"
+  }
 }
