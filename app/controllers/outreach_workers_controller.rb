@@ -10,6 +10,7 @@ class OutreachWorkersController < ApplicationController
   # GET /outreach_workers/1
   # GET /outreach_workers/1.json
   def show
+    @transactions = @outreach_worker.transactions
   end
 
   # GET /outreach_workers/new
