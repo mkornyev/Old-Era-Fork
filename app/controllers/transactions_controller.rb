@@ -7,6 +7,7 @@ class TransactionsController < ApplicationController
 
   def new
     @transaction = Transaction.new
+    @sharer = OutreachWorker.find_by_user_id(current_user.id)
   end
 
   def edit

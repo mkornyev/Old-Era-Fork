@@ -1,14 +1,45 @@
+<div class="container">
+
 <p id="notice"><%= notice %></p>
 
 <h2>
   <%= @outreach_worker.user.name %>
 </h2>
 
-<p>
+<!-- <p>
   <strong>Organization:</strong>
   <%= @outreach_worker.organization %>
-</p>
+</p> -->
+
+<% if @transactions.empty? %>
+  <h4>This outreach worker has not referred any resources yet.</h4>
+<% else %>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Resource </th>
+        <th>Referred To </th>
+      </tr>
+    </thead>
 
 
-<%= link_to 'Edit', edit_outreach_worker_path(@outreach_worker) %> |
+    <tbody>
+      <% @transactions.each do |referral| %>
+        <tr>
+          <td><%= link_to referral.resource.name, resource_path(referral.resource) %></td>
+          <td><%= link_to referral.re_entrant.user.name, re_entrant_path(referral.re_entrant) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+
+    </table>
+  <% end %>
+
+
+<%= link_to 'Edit Account', edit_outreach_worker_path(@outreach_worker) %> |
 <%= link_to 'Back', outreach_workers_path %>
+
+
+
+</div>
