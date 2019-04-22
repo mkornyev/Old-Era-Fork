@@ -18,14 +18,18 @@ class Resource < ApplicationRecord
     validates_format_of :phone, with: /\A\(?\d{3}\)?[-. ]?\d{3}[-.]?\d{4}\z/, message: "should be 10 digits (area code needed) and delimited with dashes or dots"
 
     scope :alphabetical, -> { order('name') }
-
+    # pg_search_scope :quick_search, against: [:name, :desc], associated_against: {tags: [:name]}
 
 
     def self.search(search)
-        Resource.includes(:tags).where("lower(resources.desc) LIKE :search OR lower(tags.name) LIKE :search", search: "%#{search.downcase}%" ).references(:tags)
+        Resource.where("lower(resources.desc) LIKE :search OR lower(resources.name) LIKE :search", search: "%#{search.downcase}%" )
     end
 
     #implement realistic reentry caterogies from website, let admin add new categories
+
+    def self.tagged_with(name)
+        Tag.find_by!(name: name).resources
+    end
 
     def address
         street_1 + "\n" + city + ", " + state + ", " + zip
