@@ -14,7 +14,8 @@ class ResourcesController < ApplicationController
   # GET /resources/1
   # GET /resources/1.json
   def show
-    @resource = Resource.find(params[:id])  
+    @resource = Resource.find(params[:id])
+    @tags = Tagging.for_resource(params[:id])
   end
 
   # GET /resources/new
@@ -33,6 +34,12 @@ class ResourcesController < ApplicationController
 
     respond_to do |format|
       if @resource.save
+        for tag_id in params[:resource][:tag_ids]
+          @tag_obj = Tagging.new
+          @tag_obj.resource = @resource
+          @tag_obj.tag = Tag.find(tag_id) 
+          @tag_obj.save
+        end
         format.html { redirect_to @resource, notice: 'Resource was successfully created.' }
         format.json { render :show, status: :created, location: @resource }
       else
@@ -74,6 +81,6 @@ class ResourcesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def resource_params
-      params.require(:resource).permit(:name, :startDate, :endDate, :phone, :email, :street_1, :street_2, :city, :state, :zip, :image, :desc, :webpage, :search)
+      params.require(:resource).permit(:name, :startDate, :endDate, :phone, :email, :street_1, :street_2, :city, :state, :zip, :image, :desc, :webpage, :search, :tag_ids => [])
     end
 end
