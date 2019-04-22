@@ -94,3 +94,4 @@ gem 'simple_form'
 
 
 
+gem 'pg_search'

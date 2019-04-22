@@ -6,6 +6,8 @@ class ResourcesController < ApplicationController
   def index
     if params[:search]
       @resources = Resource.search(params[:search]).paginate(:page => params[:page]).per_page(10)
+    elsif params[:tags]
+      @resources = Resource.tagged_with(params[:tags]).paginate(:page => params[:page]).per_page(10)
     else
       @resources = Resource.all.paginate(:page => params[:page]).per_page(10)
     end
@@ -74,6 +76,6 @@ class ResourcesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def resource_params
-      params.require(:resource).permit(:name, :startDate, :endDate, :phone, :email, :street_1, :street_2, :city, :state, :zip, :image, :desc, :webpage, :search)
+      params.require(:resource).permit(:name, :startDate, :endDate, :phone, :email, :street_1, :street_2, :city, :state, :zip, :image, :desc, :webpage, :search, :tags, :flags, :tagged_with)
     end
 end
