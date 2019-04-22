@@ -67,10 +67,13 @@ class Ability
   
       else
         # guests can only read camp and curriculum details covered (plus home pages)
-  
-        can :create, ReEntrant
         can :create, User
-  
+        can :create, ReEntrant
+        
+        
+        #should not be in final product
+        can :create, OutreachWorker
+        
       end
     end
   end
