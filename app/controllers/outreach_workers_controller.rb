@@ -63,6 +63,16 @@ class OutreachWorkersController < ApplicationController
     end
   end
 
+  # GET /outreach_workers/referred_users
+  def referred
+    @users = Reeentrant.for_sow(current_user.outreachWorker.id)
+  end
+
+  # GET /outreach_workers/referrals
+  def referrals
+    @transactions = Tranaction.for_outreach_worker(current_user.outreachWorker.id)
+  end
+
   # DELETE /outreach_workers/1
   # DELETE /outreach_workers/1.json
   def destroy
