@@ -65,7 +65,7 @@ class ReEntrantsController < ApplicationController
   end
 
   def referrals
-    @transactions = Tranaction.for_re_entrant(current_user.reentrant.id)
+    @transactions = Transaction.for_re_entrant(current_user.reentrant.id)
   end
 
   # DELETE /re_entrants/1
