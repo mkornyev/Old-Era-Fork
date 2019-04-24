@@ -1,5 +1,5 @@
 <%= form_tag(resources_path, method: :get) do %>
-  <%= select_tag "Tag", options_for_select(Tag.all) %>
+  <%= select_tag params[:tagged_with], options_for_select(Tag.all) %>
   <%= submit_tag("Filter By Tag") %>
 <% end %>
 
