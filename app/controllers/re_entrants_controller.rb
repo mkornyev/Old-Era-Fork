@@ -64,6 +64,10 @@ class ReEntrantsController < ApplicationController
     end
   end
 
+  def referrals
+    @transactions = Transaction.for_re_entrant(current_user.reentrant.id)
+  end
+
   # DELETE /re_entrants/1
   # DELETE /re_entrants/1.json
   def destroy

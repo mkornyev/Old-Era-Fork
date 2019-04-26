@@ -22,6 +22,13 @@ Rails.application.routes.draw do
   get 'resources/:id/share/', to: 'transactions#new', as: :share_resource_path
   get 'resources/:id/confirm', to: 'transactions#confirm', as: :confirm_resource_path
 
+  # Additional Quality-of-life routes
+  get 're_entrants/referrals', to: 're_entrants#referrals', as: :get_reentrant_referral_path
+
+  get 'outreach_workers/referred_users', to: 'outreach_workers#referred_users', as: :get_referred_users_path
+  get 'outreach_workers/referrals', to: 'outreach_workers#referral', as: :get_sow_referral_path
+
+
   # Default routes
   resources :outreach_workers
   resources :re_entrants
@@ -30,6 +37,7 @@ Rails.application.routes.draw do
   resources :tags
   resources :transactions
 
+  
   
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
