@@ -1,0 +1,23 @@
+<h4>Your Referrals</h4>
+
+<% if @transactions.empty? %>
+  <h4>You have not referred any resources yet.</h4>
+<% else %>
+
+    <% @transactions.each do |referral| %>
+    <div class="card" style="width: 20rem;">
+      <div class="card-body">
+        <h4 class="card-title"><%=link_to referral.resource.name, resource_path(referral.resource)%></h4>
+        <h6 class="card-subtitle mb-2 text-muted">Referred to <%= link_to referral.re_entrant.user.name, re_entrant_path(referral.re_entrant) %></h6>
+        <p class="card-text">
+          <% if referral.resourceAccessed %>
+            This resource was accessed at <%=referral.dateAccessed%>
+          <% else %>
+            This resource has not been accessed yet.
+          <% end %>
+         </p>
+        
+      </div>
+    </div>
+  <% end %>
+<% end %>

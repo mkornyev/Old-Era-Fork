@@ -20,7 +20,7 @@
           <a class="nav-link" href="<%=outreach_worker_path(OutreachWorker.find_by_user_id(current_user.id))%>">My Account</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<%=outreach_worker_path(OutreachWorker.find_by_user_id(current_user.id))%>">My Referrals</a>
+          <a class="nav-link" href="<%=get_sow_referral_path_url%>">My Referrals</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="<%=signup_path%>">Create an Account</a>
