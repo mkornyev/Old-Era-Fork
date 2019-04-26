@@ -1,9 +1,8 @@
-<%= form_tag(resources_path, method: :get) do %>
-  <%= select_tag "Tag", options_for_select(Tag.all) %>
-  <%= submit_tag("Filter By Tag") %>
-<% end %>
-
-
-
+<div id="filter">
+  <%= form_tag(resources_path, method: :get) do %>
+    <%= collection_select :resource, :tagged_with, Tag.all, :name, :name, prompt: true %>
+    <%= submit_tag("Filter") %>
+  <% end %>
+</div>
 
 

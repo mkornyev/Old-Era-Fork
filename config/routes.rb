@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'home/contact', to: 'home#contact', as: :contact
   get 'home/privacy', to: 'home#privacy', as: :privacy
   get 'home/search', to: 'home#search', as: :search
+  get 'home/filter', to: 'home#filter', as: :filter
   root 'home#index'
 
 
@@ -20,12 +21,14 @@ Rails.application.routes.draw do
  # Special routes
   get 'resources/:id/share/', to: 'transactions#new', as: :share_resource_path
   get 'resources/:id/confirm', to: 'transactions#confirm', as: :confirm_resource_path
+  get 'resources/:id/use_resource', to: 'transactions#use_resource', as: :use_resource_path
 
   # Additional Quality-of-life routes
+  get 'user/referrals', to: 'users#referrals', as: :get_referral_path
   get 're_entrants/referrals', to: 're_entrants#referrals', as: :get_reentrant_referral_path
 
-  get 'outreach_workers/referred_users', to: 'outreach_workers#referred_users', as: :get_referred_users_path
-  get 'outreach_workers/referrals', to: 'outreach_workers#referral', as: :get_sow_referral_path
+  get 'outreach_workers/referred_users', to: 'outreach_workers#referred', as: :get_referred_users_path
+  get 'outreach_workers/referrals', to: 'outreach_workers#referrals', as: :get_sow_referral_path
 
 
   # Default routes

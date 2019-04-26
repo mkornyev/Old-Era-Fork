@@ -41,6 +41,17 @@ class TransactionsController < ApplicationController
     end
   end
 
+  def use_resource
+    @transaction = Transaction.find_by_resource_id(params[:id])
+    @transaction.resourceAccessed = true
+    @transaction.dateAccessed = Time.now
+    if @transaction.save
+      redirect_to re_entrant_url(@transaction.re_entrant)
+    else
+      redirect_to resources_url(@transaction.resource)
+    end
+  end
+
   private
 
   def transaction_params
