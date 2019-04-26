@@ -31,6 +31,9 @@
 	<p><%= @resource.desc %></p>
 
 	<p><a href="<%= @resource.webpage %>" class="btn btn-primary btn-raised btn-lg">Visit Website</a></p>
+	<%if current_user.role?(:reentrant) %>
+    <p><a href="<%= use_resource_path_url %>" class="btn btn-primary btn-raised btn-lg">Verify Resource Used</a></p>
+  <%end%>
 
 
 	<!-- <details>
