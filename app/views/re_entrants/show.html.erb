@@ -1,28 +1,32 @@
+<div class="container">
+
 <p id="notice"><%= notice %></p>
-<h2><%= @re_entrant.user.name %></h2>
+<h2>Welcome back, <%= @re_entrant.user.name %></h2>
+
+<hr>
+
+<h4>Account Information</h4>
+
+<p>
+  <strong>Email:</strong>
+  <%= @re_entrant.email %>
+</p>
+<p>
+  <strong>Phone Number:</strong>
+  <%= @re_entrant.phone %>
+</p>
 <p>
   <strong>Neighborhood:</strong>
   <%= @re_entrant.neighborhood %>
 </p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Resource</th>
-      <th>Referred By</th>
-    </tr>
-  </thead>
+<%= link_to 'Edit Your Account', edit_re_entrant_path(@re_entrant) %> 
 
 
-  <tbody>
-    <% @transactions.each do |referral| %>
-      <tr>
-        <td><%= link_to referral.resource.name, resource_path(referral.resource) %></td>
-        <td><%= link_to referral.outreach_worker.user.name, outreach_worker_path(referral.outreach_worker) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<%= link_to 'Edit', edit_re_entrant_path(@re_entrant) %> |
-<%= link_to 'Back', re_entrants_path %>
+
+
+
+
+
+</div>
