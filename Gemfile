@@ -20,7 +20,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 
-gem 'bootstrap'
+# gem 'bootstrap'
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'popper_js', '~> 1.14.5'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
 gem "autoprefixer-rails"
 gem 'jquery-rails'
