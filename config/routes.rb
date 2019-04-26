@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'home/contact', to: 'home#contact', as: :contact
   get 'home/privacy', to: 'home#privacy', as: :privacy
   get 'home/search', to: 'home#search', as: :search
+  get 'home/filter', to: 'home#filter', as: :filter
   root 'home#index'
 
 
