@@ -28,7 +28,7 @@ class OutreachWorkersController < ApplicationController
     @user = User.new(user_params)
     @user.role = "sow"
     @outreach_worker = OutreachWorker.new
-    @outreach_worker.organization = params[:organization]
+    @outreach_worker.organization = params[:outreach_worker][:organization]
     
 
     respond_to do |format|

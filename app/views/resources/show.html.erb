@@ -14,7 +14,20 @@
 	  <li class="address"><%= @resource.address %></li>
 
 	</ul>
-
+	<table>
+  <thead>
+    <tr>
+      <th>Tags</th>
+    </tr>
+  </thead>
+		<tbody>
+    	<% @tags.each do |tag_obj| %>
+      	<tr>
+        	<td><%= link_to tag_obj.tag.name, tag_path(tag_obj.tag) %></td>
+      	</tr>
+    	<% end %>
+  	</tbody>
+	</table>
 	<p><%= @resource.desc %></p>
 
 	<p><a href="<%= @resource.webpage %>" class="btn btn-primary btn-raised btn-lg">Visit Website</a></p>

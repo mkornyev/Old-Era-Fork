@@ -16,7 +16,8 @@ class ResourcesController < ApplicationController
   # GET /resources/1
   # GET /resources/1.json
   def show
-    @resource = Resource.find(params[:id])  
+    @resource = Resource.find(params[:id])
+    @tags = Tagging.for_resource(params[:id])
   end
 
   # GET /resources/new
@@ -76,6 +77,6 @@ class ResourcesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def resource_params
-      params.require(:resource).permit(:name, :startDate, :endDate, :phone, :email, :street_1, :street_2, :city, :state, :zip, :image, :desc, :webpage, :search, :tags, :flags, :tagged_with)
+        params.require(:resource).permit(:name, :startDate, :endDate, :phone, :email, :street_1, :street_2, :city, :state, :zip, :image, :desc, :webpage, :search, :tags, :flags, :tagged_with, :tag_ids => [])
     end
 end
