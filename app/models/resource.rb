@@ -28,7 +28,7 @@ class Resource < ApplicationRecord
     #implement realistic reentry caterogies from website, let admin add new categories
 
     def self.tagged_with(name)
-        Tag.find_by!(name: name).first.resources
+        Tag.find_by!(name: name).resources
     end
 
     def address
