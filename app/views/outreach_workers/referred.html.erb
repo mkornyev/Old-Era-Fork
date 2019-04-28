@@ -1,0 +1,15 @@
+<h4>Referred Users</h4>
+
+<% if @users.empty? %>
+  <h4>You have not referred any users yet.</h4>
+<% else %>
+
+    <% @users.each do |referral| %>
+    <div class="card" style="width: 20rem;">
+      <div class="card-body">
+        <h4 class="card-title"><%=link_to referral.name, re_entrant_path(referral.reentrant)%></h4>
+        
+      </div>
+    </div>
+  <% end %>
+<% end %>

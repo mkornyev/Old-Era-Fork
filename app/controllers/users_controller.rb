@@ -38,6 +38,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def referred
+    @users = ReEntrant.for_sow(current_user.outreachWorker.id)
+  end
+
+  # GET /outreach_workers/referrals
+  def referrals
+    if current_user.role?(:reentrant)
+      @transactions = Transaction.for_re_entrant(current_user.reentrant.id)
+    elsif current_user.role?(:sow)
+      @transactions = Transaction.for_outreach_worker(current_user.outreachWorker.id)
+    end
+      
+  end
+
   private
     def set_user
       @user = User.find(params[:id])
