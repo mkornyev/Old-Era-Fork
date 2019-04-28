@@ -1,5 +1,7 @@
 class ResourcesController < ApplicationController
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
+  before_action :check_login
+  authorize_resource
 
   # GET /resources
   # GET /resources.json
