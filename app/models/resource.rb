@@ -21,7 +21,6 @@ class Resource < ApplicationRecord
     scope :active,       -> { where(active: true) }
     # pg_search_scope :quick_search, against: [:name, :desc], associated_against: {tags: [:name]}
 
-
     def self.search(search)
         Resource.where("lower(resources.desc) LIKE :search OR lower(resources.name) LIKE :search", search: "%#{search.downcase}%" )
     end
