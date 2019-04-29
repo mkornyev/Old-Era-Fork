@@ -6,4 +6,6 @@ class Transaction < ApplicationRecord
   scope :for_resource,        ->(resource_id) { where(resource_id: resource_id) }
   scope :for_re_entrant,      ->(re_entrant_id) { where(re_entrant_id: re_entrant_id) }
   scope :for_outreach_worker, ->(outreach_worker_id) { where(outreach_worker_id: outreach_worker_id) }
+  scope :for_neighborhood,    -> (neighborhood) { joins(:re_entrant).where('re_entrants.neighborhood = ?', neighborhood) }
+
 end
