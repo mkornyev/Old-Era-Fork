@@ -34,4 +34,8 @@ class Resource < ApplicationRecord
     def address
         street_1 + "\n" + city + ", " + state + ", " + zip
     end
+
+    def referred?(reentrant)
+        not Transaction.where("transactions.resource_id = ? AND transactions.re_entrant_id = ? AND transactions.resource_accessed = ?", self.id, reentrant.id, false).empty?
+    end
 end
