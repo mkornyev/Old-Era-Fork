@@ -7,27 +7,42 @@
 
 	<!-- <img src="<%= @resource.image %>"> -->
 
-	<ul class="resource-info">
-	  <li class="phone"><%= @resource.phone %></li>
-	  <li class="mail"><%= @resource.email %></li>
-	  <li class="website"> <a href="<%= @resource.webpage %>"><%= @resource.webpage %></a></li>
-	  <li class="address"><%= @resource.address %></li>
+	  <b>Phone</b>: <%= @resource.phone %>
+	  <br>
+	  <% if @resource.email.blank? %>
 
-	</ul>
-	<table>
+	  <% else %>
+	  	<b>Email</b>: <%= @resource.email %>
+	  	<% end %>
+	  <br>
+	  <b>Address</b>: <%= @resource.address %>
+
+	  <br>
+
+<% if @tags.empty? %>
+<% else %>
+
+<table>
   <thead>
     <tr>
       <th>Tags</th>
     </tr>
   </thead>
-		<tbody>
+
+	<tbody>
     	<% @tags.each do |tag_obj| %>
       	<tr>
         	<td><%= link_to tag_obj.tag.name, tag_path(tag_obj.tag) %></td>
       	</tr>
     	<% end %>
   	</tbody>
-	</table>
+
+</table>
+
+<% end %>
+
+<br>
+
 	<p><%= @resource.desc %></p>
 
 	<p><a href="<%= @resource.webpage %>" class="btn btn-primary btn-raised btn-lg">Visit Website</a></p>
@@ -36,14 +51,10 @@
   <%end%>
 
 
-	<!-- <details>
-	  <summary>Description</summary>
-	  <p class="description longtext">
-	      <%= @resource.desc %>   
-	  </p>
-	</details> -->
+	<% if current_user.role?(:admin) %>
+    <%= link_to 'Edit', edit_resource_path(@resource)%>
+  <% end %>
 
-	<%= link_to 'Edit', edit_resource_path(@resource) %> |
 	<%= link_to 'Back', resources_path %>
 
 </div>
