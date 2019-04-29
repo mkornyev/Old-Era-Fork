@@ -43,19 +43,24 @@
 
 	<p><%= @resource.desc %></p>
 
-	<p><a href="<%= @resource.webpage %>" class="btn btn-primary btn-raised btn-lg">Visit Website</a></p>
+	
 	<%if @referred %>
     <p><a href="<%= use_resource_path_url %>" class="btn btn-primary btn-raised btn-lg">Verify Resource Used</a></p>
   <%end%>
-  <%if current_user.role?(:admin) %>
-    <p> <a href='<%= link_to(resource_path(@resource), method: :delete) %>' class="btn btn-primary btn-raised btn-lg">Delete Resource</a></p>
+
+  <p><a href="<%= @resource.webpage %>" class="btn btn-primary btn-raised btn-lg">Visit Website</a>
+  <a href="<%= resources_path %>" class="btn btn-primary btn-raised btn-lg">Back</a></p>
+ <br>
+	<%if current_user.role?(:admin) %>
+		<a href="<%= edit_resource_path(@resource) %>" class="btn btn-primary btn-raised btn-lg">Edit</a>
+		<% if @resource.active %>
+	  	<%= link_to(deactivate_resource_path_url, class: 'btn btn-primary btn-raised btn-lg') do %>
+	  		&nbsp;<%= "Deactivate Resource" %>
+	    <% end %>
+	   <% else %>
+	     <%= link_to(reactivate_resource_path_url, class: 'btn btn-primary btn-raised btn-lg') do %>
+  		  &nbsp;<%= "Reactivate Resource" %>
+      <% end %>
+    <% end %>
   <%end%>
-
-
-	<% if current_user.role?(:admin) %>
-    <%= link_to 'Edit', edit_resource_path(@resource)%>
-  <% end %>
-
-	<%= link_to 'Back', resources_path %>
-
 </div>

@@ -1,7 +1,10 @@
 class HomeController < ApplicationController
   def index
     if params[:tran]
+      
+    end
     @transactions = Transaction.all
+    @reentrants = ReEntrant.all
   end
 
   def about
