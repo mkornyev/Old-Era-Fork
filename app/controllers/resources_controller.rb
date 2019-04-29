@@ -20,6 +20,11 @@ class ResourcesController < ApplicationController
   def show
     @resource = Resource.find(params[:id])
     @tags = Tagging.for_resource(params[:id])
+    if current_user.role?(:reentrant)
+      @referred = @resource.referred?(current_user.reentrant)
+    else
+      @referred = false
+    end
   end
 
   # GET /resources/new
