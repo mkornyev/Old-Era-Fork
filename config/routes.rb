@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get 'resources/:id/share/', to: 'transactions#new', as: :share_resource_path
   get 'resources/:id/confirm', to: 'transactions#confirm', as: :confirm_resource_path
   get 'resources/:id/use_resource', to: 'transactions#use_resource', as: :use_resource_path
+  get 'resources/:id/deactivate_resource', to: 'resources#deactivate', as: :deactivate_resource_path
 
   # Additional Quality-of-life routes
   get 'user/referrals', to: 'users#referrals', as: :get_referral_path

@@ -28,7 +28,8 @@
   <% end %>
 
   <br>
-
-  <%= link_to 'New Resource', new_resource_path %>
+  <% if current_user.role?(:sow) || current_user.role?(:admin)%>
+    <%= link_to 'New Resource', new_resource_path %>
+  <% end %>
 
 </div>

@@ -34,6 +34,9 @@
 	<%if @referred %>
     <p><a href="<%= use_resource_path_url %>" class="btn btn-primary btn-raised btn-lg">Verify Resource Used</a></p>
   <%end%>
+  <%if current_user.role?(:admin) %>
+    <p> <a href='<%= link_to(resource_path(@resource), method: :delete) %>' class="btn btn-primary btn-raised btn-lg">Delete Resource</a></p>
+  <%end%>
 
 
 	<!-- <details>

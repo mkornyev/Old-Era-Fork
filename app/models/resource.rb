@@ -18,6 +18,7 @@ class Resource < ApplicationRecord
     validates_format_of :phone, with: /\A\(?\d{3}\)?[-. ]?\d{3}[-.]?\d{4}\z/, message: "should be 10 digits (area code needed) and delimited with dashes or dots"
 
     scope :alphabetical, -> { order('name') }
+    scope :active,       -> { where(active: true) }
     # pg_search_scope :quick_search, against: [:name, :desc], associated_against: {tags: [:name]}
 
 
