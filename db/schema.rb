@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_08_023248) do
+ActiveRecord::Schema.define(version: 2019_04_28_234756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 2019_04_08_023248) do
     t.bigint "outreach_worker_id"
     t.bigint "re_entrant_id"
     t.bigint "resource_id"
-    t.boolean "resourceAccessed"
+    t.boolean "resource_accessed"
     t.datetime "dateAccessed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -4,14 +4,15 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Welcome to example.com, <%= @user.name %></h1>
+    <h1>Hello <%= @user.name %>,</h1>
     <p>
-      You have successfully signed up to example.com,
-      your username is: <%= @user.login %>.<br>
+      You have have been referred to <a href="https://newera412.herokuapp.com/resources/<%=@resource.id%>"><%=@resource.name%></a> by <%= @sow.user.name %>.
     </p>
     <p>
-      To login to the site, just follow this link: <%= @url %>.
+      You can also access the NewERA412 website with the link below. <br>
+      <a href="https://newera412.herokuapp.com">https://newera412.herokuapp.com</a>
     </p>
-    <p>Thanks for joining and have a great day!</p>
+    <p>We hope to keep in touch!</p>
+    <p>Sincerely,<br>The NewERA412 team</p>
   </body>
 </html>

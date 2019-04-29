@@ -1,14 +1,12 @@
 <div class="container">
 
-<h3>My Referrals</h3>
+<h2>My Referrals</h2>
 
-<% if @transactions.empty? %>
-    <h4> You have no referrals at this time </h4>
+<h3> Active Referrals </h3>
+<% if @current.empty? %>
+    <h4> You have no current referrals at this time </h4>
 <% else %>
-
-  
-
-  <% @transactions.each do |referral| %>
+  <% @current.each do |referral| %>
     <div class="card" style="width: 20rem;">
       <div class="card-body">
         <h4 class="card-title"><%=link_to referral.resource.name, resource_path(referral.resource)%></h4>
@@ -25,9 +23,31 @@
       </div>
     </div>
   <% end %>
+<% end %>
 
+<br>
 
+<h3> Used Referrals </h3>
+<% if @past.empty? %>
+    <h4> You have no past referrals at this time </h4>
+<% else %>
+  <% @past.each do |referral| %>
+    <div class="card" style="width: 20rem;">
+      <div class="card-body">
+        <h4 class="card-title"><%=link_to referral.resource.name, resource_path(referral.resource)%></h4>
+        <h6 class="card-subtitle mb-2 text-muted">Referred by <%= link_to referral.outreach_worker.user.name, outreach_worker_path(referral.outreach_worker) %></h6>
+        <p class="card-text"><%=h truncate(referral.resource.desc, :length => 150) %> </p>
+        <% if current_user.role?(:reentrant) %>
+          <a href="<%= referral.resource.webpage %>" class="card-link">Visit Website</a>
+          <a href="<%=resource_path(referral.resource)%>" class="card-link">View Resource</a>
+        <% else %>
+          <a href="<%=resource_path(referral.resource)%>" class="card-link">View Resource</a>
+          <a href="<%=share_resource_path_url(referral.resource)%>" class="card-link">Share</a>
 
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 <% end %>
 
 </div>

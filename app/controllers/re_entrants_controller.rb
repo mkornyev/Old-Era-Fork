@@ -66,7 +66,8 @@ class ReEntrantsController < ApplicationController
   end
 
   def referrals
-    @transactions = Transaction.for_re_entrant(current_user.reentrant.id)
+    @current = Transaction.for_re_entrant(current_user.reentrant.id).where("resource_accessed = ?", false)
+    @past = Transaction.for_re_entrant(current_user.reentrant.id).where("resource_accessed = ?", true)
   end
 
   # DELETE /re_entrants/1

@@ -22,6 +22,8 @@ gem 'coffee-rails', '~> 4.2'
 
 # gem 'bootstrap'
 gem 'bootstrap-sass', '~> 3.2.0'
+gem 'sassc-rails', '>= 2.1.0'
+
 gem 'popper_js', '~> 1.14.5'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
 gem "autoprefixer-rails"

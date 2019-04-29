@@ -6,12 +6,10 @@ html {
 	/*background-color: #F3F5F6;*/
 }
 
-h1 {
-	font-size: 2.3em;
-}
+
 
 h3 {
-	font-size: 1.4em;
+	font-size: 2em;
 }
 
 body {
@@ -20,4 +18,33 @@ body {
 
 #search {
 	padding-top: 1em;
+}
+
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+
+.navbar-brand {
+	font-size: 3rem;
+}
+
+.btn.btn-lg {
+	font-size: 1.25rem;
+}
+
+h4 {
+	font-size: 1.5rem;
+}
+
+.card {
+	width: 100% !important;
+}
+
+.card-link {
+	font-size: 1.3rem;
+}
+
+h6 {
+	font-size: 1rem;
 }

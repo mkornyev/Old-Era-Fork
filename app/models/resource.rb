@@ -18,6 +18,8 @@ class Resource < ApplicationRecord
     validates_format_of :phone, with: /\A\(?\d{3}\)?[-. ]?\d{3}[-.]?\d{4}\z/, message: "should be 10 digits (area code needed) and delimited with dashes or dots"
 
     scope :alphabetical, -> { order('name') }
+    scope :active,       -> { where(active: true) }
+    # pg_search_scope :quick_search, against: [:name, :desc], associated_against: {tags: [:name]}
 
     def self.search(search)
         Resource.where("lower(resources.desc) LIKE :search OR lower(resources.name) LIKE :search", search: "%#{search.downcase}%" )
@@ -31,5 +33,9 @@ class Resource < ApplicationRecord
 
     def address
         street_1 + "\n" + city + ", " + state + ", " + zip
+    end
+
+    def referred?(reentrant)
+        not Transaction.where("transactions.resource_id = ? AND transactions.re_entrant_id = ? AND transactions.resource_accessed = ?", self.id, reentrant.id, false).empty?
     end
 end
