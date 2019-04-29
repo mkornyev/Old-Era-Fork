@@ -10,7 +10,7 @@ class Ability
       if user.role? :admin
         # they get to do it all
         can :manage, :all
-  
+
       elsif user.role? :sow
         # can read camps, curriculums, and locations and instructors
         can :read, Resource
@@ -18,7 +18,6 @@ class Ability
         can :read, Transaction
         can :read, Tag
 
-          
         can :create, ReEntrant
         can :create, User
   
@@ -64,6 +63,11 @@ class Ability
         can :show, ReEntrant do |this_reentrant|
           user.reentrant == this_reentrant
         end
+
+        can :read, Resource
+        can :read, Flag
+        can :read, Transaction
+        can :read, Tag
   
       else
         # guests can only read camp and curriculum details covered (plus home pages)

@@ -1,5 +1,7 @@
 class ResourcesController < ApplicationController
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
+  before_action :check_login
+  authorize_resource
 
   # GET /resources
   # GET /resources.json
@@ -18,6 +20,11 @@ class ResourcesController < ApplicationController
   def show
     @resource = Resource.find(params[:id])
     @tags = Tagging.for_resource(params[:id])
+    if current_user.role?(:reentrant)
+      @referred = @resource.referred?(current_user.reentrant)
+    else
+      @referred = false
+    end
   end
 
   # GET /resources/new
@@ -33,6 +40,7 @@ class ResourcesController < ApplicationController
   # POST /resources.json
   def create
     @resource = Resource.new(resource_params)
+    @resource.active = true
 
     respond_to do |format|
       if @resource.save
@@ -68,6 +76,17 @@ class ResourcesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def deactivate
+    @resource.active = false
+    respond_to do |format|
+      @resource.update
+      format.html { redirect_to resources_url, notice: 'Resource was successfully deactivated.' }
+      format.json { head :no_content }
+    end
+
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
