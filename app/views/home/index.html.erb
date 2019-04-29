@@ -34,5 +34,8 @@
     <%= render partial: 'reentrant_home' %>
   <% elsif current_user.role?(:sow) %>
     <%= render partial: 'sow_home' %>
+  <% elsif current_user.role?(:admin) %>
+    <%= render partial: 'admin_dashboard' %>
+  
   
 <% end %>
