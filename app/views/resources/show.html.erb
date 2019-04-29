@@ -7,17 +7,15 @@
 
 	<!-- <img src="<%= @resource.image %>"> -->
 
-	  <b>Phone</b>: <%= @resource.phone %>
-	  <br>
+	  <p><b>Phone</b>: <%= @resource.phone %></p>
+	  
 	  <% if @resource.email.blank? %>
 
 	  <% else %>
-	  	<b>Email</b>: <%= @resource.email %>
+	  	<p><b>Email</b>: <%= @resource.email %></p>
 	  	<% end %>
-	  <br>
-	  <b>Address</b>: <%= @resource.address %>
+	  <p><b>Address</b>: <%= @resource.address %></p>
 
-	  <br>
 
 <% if @tags.empty? %>
 <% else %>
