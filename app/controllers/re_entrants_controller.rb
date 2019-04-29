@@ -35,6 +35,7 @@ class ReEntrantsController < ApplicationController
       if @user.save
         @re_entrant.user_id = @user.id
         if @re_entrant.save
+          session[:user_id] = @re_entrant.user.id
           logger.info("Saving is good!")
           format.html { redirect_to @re_entrant, notice: 'Your account was successfully created!' }
           format.json { render :show, status: :created, location: @re_entrant }
