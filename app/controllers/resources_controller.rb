@@ -1,5 +1,5 @@
 class ResourcesController < ApplicationController
-  before_action :set_resource, only: [:show, :edit, :update, :destroy]
+  before_action :set_resource, only: [:show, :edit, :update, :destroy, :deactivate, :reactivate]
   before_action :check_login
   authorize_resource
 
@@ -78,9 +78,17 @@ class ResourcesController < ApplicationController
   end
 
   def deactivate
-    @resource.active = false
     respond_to do |format|
-      @resource.update
+      @resource.update(active: false)
+      format.html { redirect_to resources_url, notice: 'Resource was successfully deactivated.' }
+      format.json { head :no_content }
+    end
+
+  end
+
+  def reactivate
+    respond_to do |format|
+      @resource.update(active: true)
       format.html { redirect_to resources_url, notice: 'Resource was successfully deactivated.' }
       format.json { head :no_content }
     end
