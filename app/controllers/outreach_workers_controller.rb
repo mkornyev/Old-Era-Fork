@@ -4,7 +4,7 @@ class OutreachWorkersController < ApplicationController
   # GET /outreach_workers
   # GET /outreach_workers.json
   def index
-    @outreach_workers = OutreachWorker.all.paginate(:page => params[:page]).per_page(20)
+    @outreach_workers = OutreachWorker.alphabetical.paginate(:page => params[:page]).per_page(20)
   end
 
   # GET /outreach_workers/1

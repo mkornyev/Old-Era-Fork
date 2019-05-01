@@ -4,7 +4,7 @@ class ReEntrantsController < ApplicationController
   # GET /re_entrants
   # GET /re_entrants.json
   def index
-    @re_entrants = ReEntrant.all.paginate(:page => params[:page]).per_page(20)
+    @re_entrants = ReEntrant.alphabetical.paginate(:page => params[:page]).per_page(20)
   end
 
   # GET /re_entrants/1
