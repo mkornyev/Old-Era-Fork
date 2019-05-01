@@ -6,12 +6,22 @@ class ResourcesController < ApplicationController
   # GET /resources
   # GET /resources.json
   def index
-    if params[:search]
-      @resources = Resource.search(params[:search]).paginate(:page => params[:page]).per_page(10)
-    elsif params[:resource]
-      @resources = Resource.tagged_with(params[:resource][:tagged_with]).paginate(:page => params[:page]).per_page(10)
+    if current_user.role?(:admin)
+      if params[:search]
+        @resources = Resource.search(params[:search]).paginate(:page => params[:page]).per_page(10)
+      elsif params[:resource]
+        @resources = Resource.tagged_with(params[:resource][:tagged_with]).paginate(:page => params[:page]).per_page(10)
+      else
+        @resources = Resource.all.paginate(:page => params[:page]).per_page(10)
+      end
     else
-      @resources = Resource.all.paginate(:page => params[:page]).per_page(10)
+      if params[:search]
+        @resources = Resource.search(params[:search]).active.paginate(:page => params[:page]).per_page(10)
+      elsif params[:resource]
+        @resources = Resource.tagged_with(params[:resource][:tagged_with]).active.paginate(:page => params[:page]).per_page(10)
+      else
+        @resources = Resource.active.paginate(:page => params[:page]).per_page(10)
+      end
     end
   end
 
@@ -89,7 +99,7 @@ class ResourcesController < ApplicationController
   def reactivate
     respond_to do |format|
       @resource.update(active: true)
-      format.html { redirect_to resources_url, notice: 'Resource was successfully deactivated.' }
+      format.html { redirect_to resources_url, notice: 'Resource was successfully reactivated.' }
       format.json { head :no_content }
     end
 

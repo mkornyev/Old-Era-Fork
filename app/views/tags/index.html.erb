@@ -2,6 +2,10 @@
 
 <h1>Tags</h1>
 
+<% if current_user.role?(:admin) %>
+  <%= link_to 'New Tag', new_tag_path %>
+<% end %>
+
 <table>
   <thead>
     <tr>
@@ -24,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Tag', new_tag_path %>
+
