@@ -3,6 +3,9 @@
 	<p id="notice"><%= notice %></p>
 
 	<h2><%= @resource.name %></h2>
+	<% if not @resource.active %>
+	<p>This resource is inactive</p>
+	<% end %>
 	<hr>
 
 	<!-- <img src="<%= @resource.image %>"> -->
@@ -49,8 +52,12 @@
   <%end%>
 
   <p><a href="<%= @resource.webpage %>" class="btn btn-primary btn-raised btn-lg">Visit Website</a>
-  <a href="<%= resources_path %>" class="btn btn-primary btn-raised btn-lg">Back</a></p>
- <br>
+  	<%if !current_user.role?(:reentrant) %>
+		<a href="<%=share_resource_path_url(@resource)%>" class="btn btn-primary btn-raised btn-lg">Share</a>
+  	<%end%>
+  </p>
+
+  
 	<%if current_user.role?(:admin) %>
 		<a href="<%= edit_resource_path(@resource) %>" class="btn btn-primary btn-raised btn-lg">Edit</a>
 		<% if @resource.active %>
@@ -63,4 +70,7 @@
       <% end %>
     <% end %>
   <%end%>
+  <br>
+  <br>
+   <a href="<%= resources_path %>" class="btn btn-primary btn-raised btn-lg">Back</a>
 </div>

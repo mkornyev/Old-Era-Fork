@@ -1,16 +1,16 @@
 class ReEntrantsController < ApplicationController
-  before_action :set_re_entrant, only: [:show, :edit, :update, :destroy]
+  before_action :set_re_entrant, only: [:show, :edit, :update, :destroy, :deactivate, :reactivate]
 
   # GET /re_entrants
   # GET /re_entrants.json
   def index
-    @re_entrants = ReEntrant.all
+    @re_entrants = ReEntrant.all.paginate(:page => params[:page]).per_page(20)
   end
 
   # GET /re_entrants/1
   # GET /re_entrants/1.json
   def show
-    @transactions = @re_entrant.transactions
+    @transactions = @re_entrant.transactions.paginate(:page => params[:page]).per_page(10)
   end
 
   # GET /re_entrants/new
@@ -66,8 +66,8 @@ class ReEntrantsController < ApplicationController
   end
 
   def referrals
-    @current = Transaction.for_re_entrant(current_user.reentrant.id).where("resource_accessed = ?", false)
-    @past = Transaction.for_re_entrant(current_user.reentrant.id).where("resource_accessed = ?", true)
+    @current = Transaction.for_re_entrant(current_user.reentrant.id).where("resource_accessed = ?", false).by_recent.paginate(:page => params[:page]).per_page(10)
+    @past = Transaction.for_re_entrant(current_user.reentrant.id).where("resource_accessed = ?", true).by_recent.paginate(:page => params[:page]).per_page(10)
   end
 
   # DELETE /re_entrants/1
@@ -78,6 +78,24 @@ class ReEntrantsController < ApplicationController
       format.html { redirect_to re_entrants_url, notice: 'Re entrant was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def deactivate
+    respond_to do |format|
+      @re_entrant.update(active: false)
+      format.html { redirect_to re_entrants_url, notice: 'ReEntrant was successfully deactivated.' }
+      format.json { head :no_content }
+    end
+
+  end
+
+  def reactivate
+    respond_to do |format|
+      @re_entrant.update(active: true)
+      format.html { redirect_to @re_entrant, notice: 'ReEntrant was successfully reactivated.' }
+      format.json { head :no_content }
+    end
+
   end
 
   private

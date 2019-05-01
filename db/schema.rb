@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_28_234756) do
+ActiveRecord::Schema.define(version: 2019_05_01_153236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2019_04_28_234756) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "active"
+    t.boolean "active", default: true
     t.index ["user_id"], name: "index_outreach_workers_on_user_id"
   end
 
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2019_04_28_234756) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "active"
+    t.boolean "active", default: true
     t.index ["user_id"], name: "index_re_entrants_on_user_id"
   end
 
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 2019_04_28_234756) do
     t.string "city"
     t.string "state"
     t.string "zip"
-    t.boolean "active"
+    t.boolean "active", default: true
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(version: 2019_04_28_234756) do
     t.string "city"
     t.string "state"
     t.string "zip"
-    t.boolean "active"
+    t.boolean "active", default: true
     t.string "first_name"
     t.string "last_name"
   end

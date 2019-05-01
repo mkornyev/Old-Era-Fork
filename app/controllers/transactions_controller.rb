@@ -15,15 +15,21 @@ class TransactionsController < ApplicationController
 
   def create
     @transaction = Transaction.new
-    @transaction.outreach_worker_id = params[:transaction][:outreach_worker_id]
-    @transaction.re_entrant_id = User.find_by_email(params[:transaction][:email]).reentrant.id
     @transaction.resource_id = params[:transaction][:resource_id]
-    @transaction.resource_accessed = false
-    if @transaction.save
-      UserMailer.share_resource(@transaction.re_entrant.user, @transaction.resource, @transaction.outreach_worker).deliver_now
-      redirect_to resources_url
+    @user = User.find_by_email(params[:transaction][:email])
+    @transaction.outreach_worker_id = params[:transaction][:outreach_worker_id]
+    if @user.nil?
+      flash[:notice] = "User does not exist in the system."
+      redirect_to @transaction.resource
     else
-      render action: 'new'
+      @transaction.re_entrant_id = @user.reentrant.id
+      @transaction.resource_accessed = false
+      if @transaction.save
+        UserMailer.share_resource(@transaction.re_entrant.user, @transaction.resource, @transaction.outreach_worker).deliver_now
+        redirect_to resources_url
+      else
+        render action: 'new'
+      end
     end
   end
 
