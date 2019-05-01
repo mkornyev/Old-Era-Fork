@@ -1,7 +1,11 @@
 <div class="container">
 
 <p id="notice"><%= notice %></p>
-<h2>Welcome back, <%= @re_entrant.user.name %></h2>
+<h2><%= @re_entrant.user.name %></h2>
+
+<% if not @re_entrant.active %>
+  <p>This user is inactive</p>
+  <% end %>
 
 <hr>
 
@@ -20,8 +24,21 @@
   <%= @re_entrant.neighborhood %>
 </p>
 
+<% if @re_entrant.user == current_user %> 
 <%= link_to 'Edit Your Account', edit_re_entrant_path(@re_entrant) %> 
+<% end %>
 
+<%if current_user.role?(:admin) %>
+    <% if @re_entrant.active %>
+      <%= link_to(deactivate_reentrant_path_url, class: 'btn btn-primary btn-raised btn-lg') do %>
+        &nbsp;<%= "Deactivate ReEntrant" %>
+      <% end %>
+     <% else %>
+       <%= link_to(reactivate_reentrant_path_url, class: 'btn btn-primary btn-raised btn-lg') do %>
+        &nbsp;<%= "Reactivate ReEntrant" %>
+      <% end %>
+    <% end %>
+  <%end%>
 
 
 

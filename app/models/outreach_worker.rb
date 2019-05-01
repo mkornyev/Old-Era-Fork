@@ -3,6 +3,7 @@ class OutreachWorker < ApplicationRecord
   has_many :transactions
   has_many :re_entrants, through: :transactions
 
+  scope :active,       -> { where(active: true) }
 
   # delegates
   delegate :email, to: :user, allow_nil: true

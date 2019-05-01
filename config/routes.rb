@@ -24,6 +24,10 @@ Rails.application.routes.draw do
   get 'resources/:id/use_resource', to: 'transactions#use_resource', as: :use_resource_path
   get 'resources/:id/deactivate_resource', to: 'resources#deactivate', as: :deactivate_resource_path
   get 'resources/:id/reactivate_resource', to: 'resources#reactivate', as: :reactivate_resource_path
+  get 're_entrants/:id/deactivate', to: 're_entrants#deactivate', as: :deactivate_reentrant_path
+  get 're_entrants/:id/reactivate', to: 're_entrants#reactivate', as: :reactivate_reentrant_path
+  get 'outreach_workers/:id/deactivate', to: 'outreach_workers#deactivate', as: :deactivate_sow_path
+  get 'outreach_workers/:id/reactivate', to: 'outreach_workers#reactivate', as: :reactivate_sow_path
 
   # Additional Quality-of-life routes
   get 'user/referrals', to: 'users#referrals', as: :get_referral_path
