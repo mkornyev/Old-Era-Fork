@@ -25,7 +25,7 @@ class TransactionsController < ApplicationController
       @transaction.re_entrant_id = @user.reentrant.id
       @transaction.resource_accessed = false
       if @transaction.save
-        UserMailer.share_resource(@transaction.re_entrant.user, @transaction.resource, @transaction.outreach_worker).deliver_now
+        # UserMailer.share_resource(@transaction.re_entrant.user, @transaction.resource, @transaction.outreach_worker).deliver_now
         redirect_to resources_url
       else
         render action: 'new'
