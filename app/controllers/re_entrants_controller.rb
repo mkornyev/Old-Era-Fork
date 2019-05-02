@@ -4,7 +4,11 @@ class ReEntrantsController < ApplicationController
   # GET /re_entrants
   # GET /re_entrants.json
   def index
-    @re_entrants = ReEntrant.all
+    if params[:re_entrant]
+      @re_entrants = ReEntrant.for_neighborhood(params[:re_entrant][:for_neighborhood]).paginate(:page => params[:page]).per_page(10)
+    else
+      @re_entrants = ReEntrant.all.paginate(:page => params[:page]).per_page(10)
+    end
   end
 
   # GET /re_entrants/1
@@ -66,7 +70,8 @@ class ReEntrantsController < ApplicationController
   end
 
   def referrals
-    @transactions = Transaction.for_re_entrant(current_user.reentrant.id)
+    @current = Transaction.for_re_entrant(current_user.reentrant.id).where("resource_accessed = ?", false)
+    @past = Transaction.for_re_entrant(current_user.reentrant.id).where("resource_accessed = ?", true)
   end
 
   # DELETE /re_entrants/1
@@ -87,7 +92,7 @@ class ReEntrantsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def re_entrant_params
-      params.require(:re_entrant).permit(:first_name, :last_name, :active, :email, :phone, :username, :password, :password_confirmation, :neighborhood, :user_id)
+      params.require(:re_entrant).permit(:first_name, :last_name, :active, :email, :phone, :username, :password, :password_confirmation, :neighborhood, :user_id, :for_neighborhood)
     end
 
     def user_params

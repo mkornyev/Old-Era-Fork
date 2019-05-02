@@ -2,7 +2,11 @@ class TransactionsController < ApplicationController
 
   def index
     #Modify so it returns bookmarks based on specific user
-    @transactions = User.all.paginate(page: params[:page]).per_page(15)
+    if params[:transaction]
+      @transactions = Transaction.for_neighborhood(params[:transaction][:for_neighborhood]).paginate(:page => params[:page]).per_page(10)
+    else
+      @transactions = Transaction.all.paginate(:page => params[:page]).per_page(10)
+    end
   end
 
   def new
@@ -18,8 +22,9 @@ class TransactionsController < ApplicationController
     @transaction.outreach_worker_id = params[:transaction][:outreach_worker_id]
     @transaction.re_entrant_id = User.find_by_email(params[:transaction][:email]).reentrant.id
     @transaction.resource_id = params[:transaction][:resource_id]
-    @transaction.resourceAccessed = false
+    @transaction.resource_accessed = false
     if @transaction.save
+      UserMailer.share_resource(@transaction.re_entrant.user, @transaction.resource, @transaction.outreach_worker).deliver_now
       redirect_to resources_url
     else
       render action: 'new'
@@ -43,7 +48,7 @@ class TransactionsController < ApplicationController
 
   def use_resource
     @transaction = Transaction.find_by_resource_id(params[:id])
-    @transaction.resourceAccessed = true
+    @transaction.resource_accessed = true
     @transaction.dateAccessed = Time.now
     if @transaction.save
       redirect_to re_entrant_url(@transaction.re_entrant)
@@ -55,6 +60,6 @@ class TransactionsController < ApplicationController
   private
 
   def transaction_params
-      params.require(:transaction).permit(:resource_id, :outreach_worker_id, :email)
+      params.require(:transaction).permit(:resource_id, :outreach_worker_id, :email, :neighborhood, :for_neighborhood)
     end
 end

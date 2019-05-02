@@ -3,28 +3,45 @@
 
 <h2>Referrals</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Outreach Worker </th>
-      <th>User</th>
-      <th>Resource</th>
+<% if @transactions.empty? %>
+  <h4> No referrals have been made at this time </h4>
 
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @transactions.each do |transaction| %>
+<% else %>
+  <%= render 'filter' %>
+  <table>
+    <thead>
       <tr>
-        <td><%= transaction.outreachWorker%></td>
-        <td><%= transaction.reentrant%></td>
+        <th>Outreach Worker </th>
+        <th>User </th>
+        <th>Resource </th>
+        <th>Resource Used </th>
 
-       
+        <th colspan="4"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @transactions.each do |referral| %>
+        <tr>
+          <td> <%= link_to referral.outreach_worker.user.name, outreach_worker_path(referral.outreach_worker) %></td>
+
+     
+          <td> <%= link_to referral.re_entrant.user.name, re_entrant_path(referral.re_entrant) %></td>
+
+          <td> <%= link_to referral.resource.name, resource_path(referral.resource) %></td>
+          <td>
+
+          <% if referral.resource_accessed %>
+            Yes
+          <% else %>
+            No
+          <% end %> </td>
+
+</tr>      <% end %>
+    </tbody>
+  </table>
+
+<% end %>
 
 <br>
 
