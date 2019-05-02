@@ -2,12 +2,12 @@
 
 
 <h2>Referrals</h2>
-
+<%= render 'filter' %>
 <% if @transactions.empty? %>
   <h4> No referrals have been made at this time </h4>
 
 <% else %>
-  <%= render 'filter' %>
+  
   <table>
     <thead>
       <tr>

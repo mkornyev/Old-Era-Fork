@@ -66,6 +66,6 @@ class TransactionsController < ApplicationController
   private
 
   def transaction_params
-      params.require(:transaction).permit(:resource_id, :outreach_worker_id, :email, :neighborhood, :for_neighborhood)
+      params.require(:transaction).permit(:resource_id, :outreach_worker_id, :email, :for_neighborhood)
     end
 end
