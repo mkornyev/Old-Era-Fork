@@ -3,8 +3,12 @@
 <p id="notice"><%= notice %></p>
 
 <h2>
-  Welcome back, <%= @outreach_worker.user.name %>
-</h2<hr>
+<%= @outreach_worker.user.name %>
+</h2>
+
+<% if not @outreach_worker.active %>
+  <p>This user is inactive</p>
+  <% end %>
 
 <h4>Account Information</h4>
 
@@ -25,9 +29,22 @@
   <% end %>
 </p>
 
+<% if @outreach_worker.user == current_user %> 
 <%= link_to 'Edit Your Account', edit_outreach_worker_path(@outreach_worker) %>
+<% end %>
 
 
+<%if current_user.role?(:admin) %>
+    <% if @outreach_worker.active %>
+      <%= link_to(deactivate_sow_path_url, class: 'btn btn-primary btn-raised btn-lg') do %>
+        &nbsp;<%= "Deactivate Street Outreach Worker" %>
+      <% end %>
+     <% else %>
+       <%= link_to(reactivate_sow_path_url, class: 'btn btn-primary btn-raised btn-lg') do %>
+        &nbsp;<%= "Reactivate Street Outreach Worker" %>
+      <% end %>
+    <% end %>
+  <%end%>
 
 
 

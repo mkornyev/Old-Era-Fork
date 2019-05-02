@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
-    @reentrants = ReEntrant.all
     @transactions = Transaction.all
+    @reentrants = ReEntrant.all
   end
 
   def about

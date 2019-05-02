@@ -3,6 +3,8 @@ class OutreachWorker < ApplicationRecord
   has_many :transactions
   has_many :re_entrants, through: :transactions
 
+  scope :active,       -> { where(active: true) }
+  scope :alphabetical, -> {includes(:user).order('users.first_name, users.last_name')}
 
   # delegates
   delegate :email, to: :user, allow_nil: true

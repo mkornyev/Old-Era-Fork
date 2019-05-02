@@ -1,16 +1,16 @@
 class OutreachWorkersController < ApplicationController
-  before_action :set_outreach_worker, only: [:show, :edit, :update, :destroy]
+  before_action :set_outreach_worker, only: [:show, :edit, :update, :destroy, :deactivate, :reactivate]
 
   # GET /outreach_workers
   # GET /outreach_workers.json
   def index
-    @outreach_workers = OutreachWorker.all
+    @outreach_workers = OutreachWorker.alphabetical.paginate(:page => params[:page]).per_page(20)
   end
 
   # GET /outreach_workers/1
   # GET /outreach_workers/1.json
   def show
-    @transactions = @outreach_worker.transactions
+    @transactions = @outreach_worker.transactions.paginate(:page => params[:page]).per_page(10)
   end
 
   # GET /outreach_workers/new
@@ -70,7 +70,7 @@ class OutreachWorkersController < ApplicationController
 
   # GET /outreach_workers/referrals
   def referrals
-    @transactions = Transaction.for_outreach_worker(current_user.outreachWorker.id)
+    @transactions = Transaction.for_outreach_worker(current_user.outreachWorker.id).by_recent.paginate(:page => params[:page]).per_page(10)
   end
 
   # DELETE /outreach_workers/1
@@ -81,6 +81,24 @@ class OutreachWorkersController < ApplicationController
       format.html { redirect_to outreach_workers_url, notice: 'Outreach worker was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+   def deactivate
+    respond_to do |format|
+      @outreach_worker.update(active: false)
+      format.html { redirect_to outreach_workers_url, notice: 'Street Outreach Worker was successfully deactivated.' }
+      format.json { head :no_content }
+    end
+
+  end
+
+  def reactivate
+    respond_to do |format|
+      @outreach_worker.update(active: true)
+      format.html { redirect_to @outreach_worker, notice: 'Street Outreach Worker was successfully reactivated.' }
+      format.json { head :no_content }
+    end
+
   end
 
   private

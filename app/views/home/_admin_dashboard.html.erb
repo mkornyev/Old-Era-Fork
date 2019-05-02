@@ -21,12 +21,12 @@
   <% @transactions.each do |transaction| %>
     <div class="card" style="width: 20rem;">
       <div class="card-body">
-        <h4 class="card-title"><%=link_to transaction.re_entrant.name+" "+transaction.outreach_worker.name+" "+transaction.resource.name, transaction_path(transaction)%></h4>
+        <h4 class="card-title"><%=link_to transaction.re_entrant.user.name+" "+transaction.outreach_worker.user.name+" "+transaction.resource.name, transaction_path(transaction)%></h4>
         <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
         <p class="card-text"><%=transaction.resource.name %> Referral</p>
-        <a href="<%= resource.webpage %>" class="card-link">Visit Website</a>
+        <a href="<%= transaction.resource.webpage %>" class="card-link">Visit Website</a>
         <a href="<%=resource_path(transaction.resource)%>" class="card-link">View Resource</a>
-        <a href="<%=reentrant_path(transaction.re_entrant)%>" class="card-link">View Client</a>
+        <a href="<%=re_entrant_path(transaction.re_entrant)%>" class="card-link">View Client</a>
         <a href="<%=outreach_worker_path(transaction.outreach_worker)%>" class="card-link">View SOW</a>
 
       </div>
