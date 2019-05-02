@@ -2,7 +2,11 @@ class TransactionsController < ApplicationController
 
   def index
     #Modify so it returns bookmarks based on specific user
-    @transactions = Transaction.all.paginate(page: params[:page]).per_page(15)
+    if params[:transaction]
+      @transactions = Transaction.for_neighborhood(params[:transaction][:for_neighborhood]).paginate(:page => params[:page]).per_page(10)
+    else
+      @transactions = Transaction.all.paginate(:page => params[:page]).per_page(10)
+    end
   end
 
   def new
@@ -62,6 +66,6 @@ class TransactionsController < ApplicationController
   private
 
   def transaction_params
-      params.require(:transaction).permit(:resource_id, :outreach_worker_id, :email)
+      params.require(:transaction).permit(:resource_id, :outreach_worker_id, :email, :for_neighborhood)
     end
 end
