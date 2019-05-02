@@ -4,6 +4,7 @@
 
 <h1>Users</h1>
 
+<%= render 'filter_reentrants' %>
 <% if current_user.role?(:admin) %>
   <%= link_to 'New Re Entrant', new_re_entrant_path %>
 <% end %>

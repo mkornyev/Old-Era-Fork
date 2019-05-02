@@ -1,0 +1,6 @@
+<div id="filter">
+  <%= form_tag(transactions_path, method: :get) do %>
+    <%= collection_select :transaction, :for_neighborhood, ReEntrant.all, :neighborhood, :neighborhood, prompt: true %>
+    <%= submit_tag("Filter") %>
+  <% end %>
+</div>
