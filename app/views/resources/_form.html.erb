@@ -63,10 +63,14 @@
   <div class="field">
     <%= form.label :tag_ids %>
     <br/>
+    <% if Tag.all.empty?%>
+    <p>No Tags to Display</p>
+    <% else %>
     <% for tag in Tag.all %>
       <%= check_box_tag "resource[tag_ids][]", tag.id%>
       <%= tag.name %>
     <br/>
+    <% end %>
     <% end %>
   </div>
 
