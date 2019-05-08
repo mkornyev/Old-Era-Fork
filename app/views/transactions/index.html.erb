@@ -21,7 +21,7 @@
     </thead>
 
     <tbody>
-      <% @transactions.each do |referral| %>
+      <% @transactions.by_recent.each do |referral| %>
         <tr>
           <td> <%= link_to referral.outreach_worker.user.name, outreach_worker_path(referral.outreach_worker) %></td>
 

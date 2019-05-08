@@ -1,21 +1,7 @@
 <div class="container">
 
 
-  <div id = "col">
-  <h3>Active Clients</h3>
-  <h4>There are <%=@reentrants.count%> active clients in the system.</h4>
-  <% @reentrants.alphabetical.each do |reentrant| %>
-    <div class="card" style="width: 20rem;">
-      <div class="card-body">
-        <h4 class="card-title"><%=link_to reentrant.first_name, re_entrant_path(reentrant)%></h4>
-        
-        <p class="card-link"><%=link_to reentrant.phone, "tel:#{reentrant.phone}"%></p>
-      </div>
-    </div>
-  <% end %>
-  </div>
-
-  <div id = "col">
+<div id = "col">
   <h3>Most Recent Transactions</h3>
   <h4>There have been <%=@transactions.this_month.count%> referral(s) in the past month.</h4>
   <% @transactions.this_month.each do |transaction| %>
@@ -33,6 +19,22 @@
     </div>
   <% end %>
   </div>
+
+  <div id = "col">
+  <h3>Active Clients</h3>
+  <h4>There are <%=@reentrants.count%> active clients in the system.</h4>
+  <% @reentrants.alphabetical.each do |reentrant| %>
+    <div class="card" style="width: 20rem;">
+      <div class="card-body">
+        <h4 class="card-title"><%=link_to reentrant.first_name, re_entrant_path(reentrant)%></h4>
+        
+        <p class="card-link"><%=link_to reentrant.phone, "tel:#{reentrant.phone}"%></p>
+      </div>
+    </div>
+  <% end %>
+  </div>
+
+  
 
   <br>
   <br>
