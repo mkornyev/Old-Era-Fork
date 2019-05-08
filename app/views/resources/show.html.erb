@@ -52,7 +52,7 @@
   <%end%>
 
   <p><a href="<%= @resource.webpage %>" class="btn btn-primary btn-raised btn-lg">Visit Website</a>
-  	<%if !current_user.role?(:reentrant) %>
+  	<%if current_user.role?(:sow) %>
 		<a href="<%=share_resource_path_url(@resource)%>" class="btn btn-primary btn-raised btn-lg">Share</a>
   	<%end%>
   </p>
