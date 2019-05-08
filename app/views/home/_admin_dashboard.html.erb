@@ -9,7 +9,7 @@
       <div class="card-body">
         <h4 class="card-title"><%=link_to reentrant.first_name, re_entrant_path(reentrant)%></h4>
         
-        <a href="<%= reentrant.phone %>" class="card-link"><%=reentrant.phone%></a>
+        <p class="card-link"><%=link_to reentrant.phone, "tel:#{reentrant.phone}"%></p>
       </div>
     </div>
   <% end %>
