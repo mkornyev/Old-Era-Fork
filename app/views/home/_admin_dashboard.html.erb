@@ -21,7 +21,7 @@
   <% @transactions.this_month.each do |transaction| %>
     <div class="card" style="width: 20rem;">
       <div class="card-body">
-        <h4 class="card-title"><%=link_to transaction.re_entrant.user.name+" "+transaction.outreach_worker.user.name+" "+transaction.resource.name, transaction_path(transaction)%></h4>
+        <h4 class="card-title"><%=link_to transaction.re_entrant.user.name+" was reccomended by "+transaction.outreach_worker.user.name+" "+transaction.resource.name, transaction_path(transaction)%></h4>
         
         <p class="card-text"><%=transaction.resource.name %> Referral</p>
         <a href="<%= transaction.resource.webpage %>" class="card-link">Visit Website</a>
