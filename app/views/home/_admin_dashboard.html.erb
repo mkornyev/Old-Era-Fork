@@ -1,6 +1,25 @@
 <div class="container">
 
 
+<div id = "col">
+  <h3>Most Recent Transactions</h3>
+  <h4>There have been <%=@transactions.this_month.count%> referral(s) in the past month.</h4>
+  <% @transactions.this_month.each do |transaction| %>
+    <div class="card" style="width: 20rem;">
+      <div class="card-body">
+        <h4 class="card-title"><%=link_to transaction.re_entrant.user.name+" was reccomended by "+transaction.outreach_worker.user.name+" "+transaction.resource.name, transaction_path(transaction)%></h4>
+        
+        <p class="card-text"><%=transaction.resource.name %> Referral</p>
+        <a href="<%= transaction.resource.webpage %>" class="card-link">Visit Website</a>
+        <a href="<%=resource_path(transaction.resource)%>" class="card-link">View Resource</a>
+        <a href="<%=re_entrant_path(transaction.re_entrant)%>" class="card-link">View Client</a>
+        <a href="<%=outreach_worker_path(transaction.outreach_worker)%>" class="card-link">View SOW</a>
+
+      </div>
+    </div>
+  <% end %>
+  </div>
+
   <div id = "col">
   <h3>Active Clients</h3>
   <h4>There are <%=@reentrants.count%> active clients in the system.</h4>
@@ -15,24 +34,7 @@
   <% end %>
   </div>
 
-  <div id = "col">
-  <h3>Most Recent Transactions</h3>
-  <h4>There have been <%=@transactions.this_month.count%> referral(s) in the past month.</h4>
-  <% @transactions.this_month.each do |transaction| %>
-    <div class="card" style="width: 20rem;">
-      <div class="card-body">
-        <h4 class="card-title"><%=link_to transaction.re_entrant.user.name+" "+transaction.outreach_worker.user.name+" "+transaction.resource.name, transaction_path(transaction)%></h4>
-        
-        <p class="card-text"><%=transaction.resource.name %> Referral</p>
-        <a href="<%= transaction.resource.webpage %>" class="card-link">Visit Website</a>
-        <a href="<%=resource_path(transaction.resource)%>" class="card-link">View Resource</a>
-        <a href="<%=re_entrant_path(transaction.re_entrant)%>" class="card-link">View Client</a>
-        <a href="<%=outreach_worker_path(transaction.outreach_worker)%>" class="card-link">View SOW</a>
-
-      </div>
-    </div>
-  <% end %>
-  </div>
+  
 
   <br>
   <br>
