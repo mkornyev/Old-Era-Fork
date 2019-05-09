@@ -2,22 +2,56 @@
 
 
 <div id = "col">
-  <h3>Most Recent Transactions</h3>
+  <h3>Most Recent Referrals</h3>
   <h4>There have been <%=@transactions.this_month.count%> referral(s) in the past month.</h4>
-  <% @transactions.this_month.each do |transaction| %>
-    <div class="card" style="width: 20rem;">
-      <div class="card-body">
-        <h4 class="card-title"><%=link_to transaction.re_entrant.user.name+" was reccomended by "+transaction.outreach_worker.user.name+" "+transaction.resource.name, transaction_path(transaction)%></h4>
-        
-        <p class="card-text"><%=transaction.resource.name %> Referral</p>
-        <a href="<%= transaction.resource.webpage %>" class="card-link">Visit Website</a>
-        <a href="<%=resource_path(transaction.resource)%>" class="card-link">View Resource</a>
-        <a href="<%=re_entrant_path(transaction.re_entrant)%>" class="card-link">View Client</a>
-        <a href="<%=outreach_worker_path(transaction.outreach_worker)%>" class="card-link">View SOW</a>
 
-      </div>
-    </div>
-  <% end %>
+
+  <% if @transactions.empty? %>
+  <h4> No referrals have been made at this time </h4>
+
+<% else %>
+
+<table>
+    <thead>
+      <tr>
+        <th>Outreach Worker </th>
+        <th>User </th>
+        <th>Resource </th>
+        <th>Resource Used </th>
+
+        <th colspan="4"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @transactions.this_month.each do |referral| %>
+        <tr>
+          <td> <%= link_to referral.outreach_worker.user.name, outreach_worker_path(referral.outreach_worker) %></td>
+
+     
+          <td> <%= link_to referral.re_entrant.user.name, re_entrant_path(referral.re_entrant) %></td>
+
+          <td> <%= link_to referral.resource.name, resource_path(referral.resource) %></td>
+          <td>
+
+          <% if referral.resource_accessed %>
+            Yes
+          <% else %>
+            No
+          <% end %> </td>
+        </tr>      
+      <% end %>
+    </tbody>
+</table>
+
+<% end %>
+
+
+
+
+
+
+
   </div>
 
   <div id = "col">
